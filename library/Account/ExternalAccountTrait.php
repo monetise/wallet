@@ -13,8 +13,6 @@ namespace Monetise\Wallet\Account;
  */
 trait ExternalAccountTrait
 {
-    use TypeAwareTrait;
-
     /**
      * @var string
      */

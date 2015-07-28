@@ -20,8 +20,10 @@ use Monetise\Money\Money\MoneyObject;
  */
 class BalanceObject implements BalanceInterface, HydratorAwareInterface
 {
-    use BalanceTrait;
     use HydratorAwareTrait;
+    use AccountTrait;
+    use DateAwareTrait;
+    use BalanceTrait;
 
     /**
      * Retrieve hydrator

@@ -18,9 +18,6 @@ use Monetise\Wallet\Date\DateAwareTrait;
  */
 trait BalanceTrait
 {
-    use AccountTrait;
-    use DateAwareTrait;
-
     /**
      * @var MoneyInterface
      */

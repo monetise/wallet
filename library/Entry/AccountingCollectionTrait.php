@@ -17,7 +17,6 @@ use Monetise\Wallet\Account\ComparableInterface;
  */
 trait AccountingCollectionTrait
 {
-    use EntryCollectionTrait;
 
     /**
      * Sum the amounts of the entries matching the given account,

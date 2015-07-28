@@ -18,6 +18,7 @@ use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
 class AccountObject extends TypeAwareObject implements AccountInterface, HydratorAwareInterface
 {
     use AccountTrait;
+    use TypeAwareTrait;
     use HydratorAwareTrait;
 
     /**

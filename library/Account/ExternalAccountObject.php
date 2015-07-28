@@ -18,6 +18,7 @@ use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
 class ExternalAccountObject extends TypeAwareObject implements ExternalAccountInterface, HydratorAwareInterface
 {
     use ExternalAccountTrait;
+    use TypeAwareTrait;
     use HydratorAwareTrait;
 
     /**

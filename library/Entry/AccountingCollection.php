@@ -16,4 +16,5 @@ use Matryoshka\Model\Object\AbstractCollection as MatryoshkaAbstractCollection;
 class AccountingCollection extends MatryoshkaAbstractCollection implements AccountingCollectionInterface
 {
     use AccountingCollectionTrait;
+    use EntryCollectionTrait;
 }

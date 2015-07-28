@@ -19,8 +19,6 @@ use Monetise\Wallet\Transaction\Balance\BalanceCollectionInterface;
  */
 trait TransactionTrait
 {
-    use DateAwareTrait;
-
     /**
      * @var AccountingCollectionInterface
      */
