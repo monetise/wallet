@@ -8,10 +8,29 @@
  */
 namespace Monetise\Wallet\Account;
 
+use Zend\Stdlib\Hydrator\HydratorAwareInterface;
+use Zend\Stdlib\Hydrator\HydratorAwareTrait;
+use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
+
 /**
  * Class ExternalAccountObject
  */
-class ExternalAccountObject implements ExternalAccountInterface
+class ExternalAccountObject extends TypeAwareObject implements ExternalAccountInterface, HydratorAwareInterface
 {
     use ExternalAccountTrait;
+    use HydratorAwareTrait;
+
+    /**
+     * Retrieve hydrator
+     *
+     * @return MatryoshkaClassMethods
+     */
+    public function getHydrator()
+    {
+        if (!$this->hydrator) {
+            $this->hydrator = new MatryoshkaClassMethods(true);
+        }
+
+        return $this->hydrator;
+    }
 }

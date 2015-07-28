@@ -47,7 +47,7 @@ trait BalanceTrait
     public function getAccountBalance()
     {
         if (!$this->accountBalance) {
-            $this->accountBalance = new MoneyObject();
+            $this->accountBalance = new MoneyObject;
         }
         return $this->accountBalance;
     }
@@ -68,7 +68,7 @@ trait BalanceTrait
     public function getAvailableBalance()
     {
         if (!$this->availableBalance) {
-            $this->availableBalance = new MoneyObject();
+            $this->availableBalance = new MoneyObject;
         }
         return $this->availableBalance;
     }

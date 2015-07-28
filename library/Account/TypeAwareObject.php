@@ -13,25 +13,12 @@ use Zend\Stdlib\Hydrator\HydratorAwareTrait;
 use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
 
 /**
- * Class AccountObject
+ * Class TypeAwareObject
  */
-class AccountObject extends TypeAwareObject implements AccountInterface, HydratorAwareInterface
+class TypeAwareObject implements TypeAwareInterface, HydratorAwareInterface
 {
-    use AccountTrait;
+    use TypeAwareTrait;
     use HydratorAwareTrait;
-
-    /**
-     * Ctor
-     *
-     * @param AccountProviderInterface $account
-     */
-    public function __construct(AccountProviderInterface $account = null)
-    {
-        if ($account) {
-            $this->setId($account->getId());
-            $this->setType($account->getType());
-        }
-    }
 
     /**
      * Retrieve hydrator

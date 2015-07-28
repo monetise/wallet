@@ -8,6 +8,14 @@
  */
 namespace Monetise\Wallet\Transaction\Balance;
 
+use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
+use Matryoshka\Model\Hydrator\Strategy\HasOneStrategy;
+use Matryoshka\Model\Hydrator\Strategy\SetTypeStrategy;
+use Monetise\Money\Money\MoneyObject;
+use Monetise\Wallet\Account\AccountObject;
+use Monetise\Wallet\Account\PrototypeStrategy\StaticStrategy;
+use Zend\Stdlib\Hydrator\HydratorAwareInterface;
+use Zend\Stdlib\Hydrator\HydratorAwareTrait;
 use Monetise\Wallet\Account\AccountInterface;
 use Monetise\Wallet\Account\TypeAwareInterface;
 use Monetise\Wallet\Entry\EntryObject;
@@ -18,8 +26,10 @@ use Monetise\Wallet\Exception;
  *
  * @method AccountInterface getAccount()
  */
-class BalanceObject extends EntryObject implements BalanceInterface
+class BalanceObject extends EntryObject implements BalanceInterface, HydratorAwareInterface
 {
+    use HydratorAwareTrait;
+
     /**
      * @var int
      */
@@ -68,5 +78,32 @@ class BalanceObject extends EntryObject implements BalanceInterface
         }
 
         return null;
+    }
+
+    /**
+     * Retrieve hydrator
+     *
+     * @return MatryoshkaClassMethods
+     */
+    public function getHydrator()
+    {
+        if (!$this->hydrator) {
+            $this->hydrator = new MatryoshkaClassMethods(true);
+            // Strategies
+            $this->hydrator->addStrategy(
+                'amount',
+                (new HasOneStrategy(new MoneyObject))->setNullable(false)
+            );
+            $this->hydrator->addStrategy(
+                'account',
+                (new HasOneStrategy(new AccountObject))->setNullable(false)->setPrototypeStrategy(new StaticStrategy)
+            );
+            $this->hydrator->addStrategy(
+                'sequence',
+                (new SetTypeStrategy('int', 'int'))->setNullable(false)
+            );
+        }
+
+        return $this->hydrator;
     }
 }
