@@ -8,11 +8,11 @@
  */
 namespace Monetise\Wallet\Transaction;
 
-use Monetise\Wallet\Transaction\Balance\BalanceCollectionInterface;
 use Monetise\Wallet\Transaction\Balance\BalanceCollection;
+use Monetise\Wallet\Transaction\Balance\BalanceCollectionInterface;
 
 /**
- * trait BalanceReferenceAwareTrait
+ * Trait BalanceReferenceAwareTrait
  */
 trait BalanceReferenceAwareTrait
 {

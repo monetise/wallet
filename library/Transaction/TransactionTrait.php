@@ -8,15 +8,11 @@
  */
 namespace Monetise\Wallet\Transaction;
 
-use DateTime;
 use Monetise\Wallet\Date\DateAwareTrait;
 use Monetise\Wallet\Entry\AccountingCollectionInterface;
+use Monetise\Wallet\Entry\AccountingCollection;
 use Monetise\Wallet\Transaction\Balance\BalanceCollection;
 use Monetise\Wallet\Transaction\Balance\BalanceCollectionInterface;
-use Monetise\Wallet\Transaction\Entry\AccountingCollection;
-use Monetise\Wallet\Transaction\Entry\EntryCollection;
-use Monetise\Wallet\Transaction\Entry\EntryCollectionInterface;
-use Monetise\Wallet\Exception\InvalidArgumentException;
 
 /**
  * Trait TransactionTrait
