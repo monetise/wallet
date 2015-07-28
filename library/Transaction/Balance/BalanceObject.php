@@ -14,8 +14,6 @@ use Matryoshka\Model\Hydrator\Strategy\SetTypeStrategy;
 use Monetise\Money\Money\MoneyObject;
 use Monetise\Wallet\Account\AccountObject;
 use Monetise\Wallet\Account\PrototypeStrategy\StaticStrategy;
-use Zend\Stdlib\Hydrator\HydratorAwareInterface;
-use Zend\Stdlib\Hydrator\HydratorAwareTrait;
 use Monetise\Wallet\Account\AccountInterface;
 use Monetise\Wallet\Account\TypeAwareInterface;
 use Monetise\Wallet\Entry\EntryObject;
@@ -26,10 +24,8 @@ use Monetise\Wallet\Exception;
  *
  * @method AccountInterface getAccount()
  */
-class BalanceObject extends EntryObject implements BalanceInterface, HydratorAwareInterface
+class BalanceObject extends EntryObject implements BalanceInterface
 {
-    use HydratorAwareTrait;
-
     /**
      * @var int
      */
