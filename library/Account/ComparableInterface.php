@@ -2,9 +2,9 @@
 /**
  * Monetise
  *
- * @link        https://github.com/monetise/noledger
+ * @link        https://github.com/monetise/wallet
  * @copyright   Copyright (c) 2015, Ripa Club
- * @license     https://github.com/monetise/noledger/blob/master/LICENSE
+ * @license     https://github.com/monetise/wallet/blob/master/LICENSE
  */
 namespace Monetise\Wallet\Account;
 
