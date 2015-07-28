@@ -10,11 +10,12 @@ namespace Monetise\Wallet\Balance;
 
 use Monetise\Money\Money\MoneyInterface;
 use Monetise\Wallet\Account\AccountProviderInterface;
+use Monetise\Wallet\Date\DateAwareInterface;
 
 /**
  * Interface BalanceInterface
  */
-interface BalanceInterface extends AccountProviderInterface
+interface BalanceInterface extends AccountProviderInterface, DateAwareInterface
 {
     /**
      * @return MoneyInterface
