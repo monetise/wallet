@@ -1,6 +1,6 @@
 <phpunit bootstrap="tests/bootstrap.php" colors="true" verbose="true">
     <testsuites>
-        <testsuite name="MonetiseWallet Test Suite">
+        <testsuite name="Monetise Wallet Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
