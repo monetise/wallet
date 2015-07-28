@@ -8,9 +8,12 @@
  */
 namespace Monetise\Wallet\Balance;
 
-use Monetise\Wallet\Account\AccountProviderInterface;
 use Monetise\Money\Money\MoneyInterface;
+use Monetise\Wallet\Account\AccountProviderInterface;
 
+/**
+ * Interface BalanceInterface
+ */
 interface BalanceInterface extends AccountProviderInterface
 {
     /**

@@ -9,6 +9,7 @@
 namespace Monetise\Wallet\Transaction;
 
 use Monetise\Wallet\Transaction\Balance\BalanceCollectionInterface;
+
 /**
  * Interface BalanceReferenceAwareInterface
  */

@@ -6,32 +6,27 @@
  * @copyright   Copyright (c) 2015, Ripa Club
  * @license     https://github.com/monetise/wallet/blob/master/LICENSE
  */
-namespace Monetise\Wallet\Transaction\Entry;
+namespace Monetise\Wallet\Entry;
 
-use Monetise\Wallet\Account\AccountInterface;
+use Monetise\Money\Money\MoneyInterface;
 use Monetise\Wallet\Account\AccountObject;
 use Monetise\Wallet\Account\AccountProviderInterface;
-use Monetise\Money\Money\MoneyInterface;
-use Monetise\Wallet\Money\MoneyObject;
 use Monetise\Wallet\Account\TypeAwareInterface;
-use Monetise\Wallet\Account\Monetise\Wallet\Account;
 
 /**
- * Class EntryObject
+ * Trait EntryTrait
  */
-class EntryObject implements EntryInterface
+trait EntryTrait
 {
-
     /**
      * @var MoneyInterface
      */
     protected $amount;
 
     /**
-     * @var AccountInterface
+     * @var TypeAwareInterface
      */
     protected $account;
-
 
     /**
      * @return MoneyInterface

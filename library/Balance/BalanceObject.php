@@ -8,6 +8,9 @@
  */
 namespace Monetise\Wallet\Balance;
 
+/**
+ * Class BalanceObject
+ */
 class BalanceObject implements BalanceInterface
 {
     use BalanceTrait;

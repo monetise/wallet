@@ -8,7 +8,8 @@
  */
 namespace Monetise\Wallet\Transaction\Balance;
 
-use Monetise\Wallet\Transaction\Entry\EntryInterface;
+use Monetise\Wallet\Account\AccountInterface;
+use Monetise\Wallet\Entry\EntryInterface;
 
 /**
  * Interface BalanceInterface
@@ -16,29 +17,33 @@ use Monetise\Wallet\Transaction\Entry\EntryInterface;
 interface BalanceInterface extends EntryInterface
 {
     /**
+     * @return AccountInterface
+     */
+    public function getAccount();
+
+    /**
+     * Get the sequence number
+     *
      * @return int
      */
     public function getSequence();
 
     /**
+     * Set the sequence number
+     *
      * @param int $sequence
      * @return $this
      */
     public function setSequence($sequence);
 
     /**
-     * Compare sequence order
+     * Compare current balance with the given balance through their sequence numbers
      *
-     * This method returns:
-     *
-     * - a positive interger, if this balance is succeeding to $balance
-     * - a negative interger, if this balance is previous to $balanceEntrey
-     * - zero, if they are equal
-     * - null, if they aren't comparable (i.e. not same wallet)
-     *
-     * @param BalanceInterface $balance
-     * @return int|null
+     * @param BalanceInterface $balance     A balance to compare with
+     * @return int|null                     >0 if current balance succeeds the given balance,
+     *                                       0 if current balance and given balance are the same,
+     *                                      <0 if current balance preceeds the given balance,
+     *                                      null if the balances are not comparable (i.e. not same account)
      */
     public function compareSequence(BalanceInterface $balance);
-
 }

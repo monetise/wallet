@@ -8,6 +8,9 @@
  */
 namespace Monetise\Wallet\Account;
 
+/**
+ * Interface TypeAwareInterface
+ */
 interface TypeAwareInterface
 {
     /**
@@ -24,5 +27,4 @@ interface TypeAwareInterface
      * @return $this
      */
     public function setType($type);
-
 }

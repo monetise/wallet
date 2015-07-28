@@ -8,44 +8,41 @@
  */
 namespace Monetise\Wallet\Transaction;
 
-use DateTime;
 use Monetise\Wallet\Date\DateAwareInterface;
+use Monetise\Wallet\Entry\AccountingCollectionInterface;
 use Monetise\Wallet\Transaction\Balance\BalanceCollectionInterface;
-use Monetise\Wallet\Transaction\Entry\EntryCollectionInterface;
 
 /**
- * @see http://martinfowler.com/eaaDev/AccountingTransaction.html
- *
  * Interface TransactionInterface
+ *
+ * @link http://martinfowler.com/eaaDev/AccountingTransaction.html
  */
-interface TransactionInterface extends
-    DateAwareInterface
+interface TransactionInterface extends DateAwareInterface
 {
-
     /**
      * Get entries collection instance
      *
-     * Use ->getEntries()->add($entry) to add a single entry.
-     * The total of all entries in a transaction must be zero
+     * Use ->getEntries()->append($entry) to add a single entry.
+     * The total of all entries in a accounting transaction must be zero.
      *
-     * @return EntryCollectionInterface
+     * @return AccountingCollectionInterface
      */
     public function getEntries();
 
     /**
      * Set entries collection instance
      *
-     * Entries are linked together so that the total of all entries in a transaction is zero
+     * The total of all entries in a accounting transaction must be zero.
      *
-     * @param EntryCollectionInterface $entryCollection
+     * @param AccountingCollectionInterface $entries
      * @return $this
      */
-    public function setEntries(EntryCollectionInterface $entryCollection);
+    public function setEntries(AccountingCollectionInterface $entries);
 
     /**
      * Get the balances collection instance
      *
-     * Included values reflect the resulting balance when the transaction has been completed
+     * Included values reflect the resulting account balance when the transaction has been completed.
      *
      * @return BalanceCollectionInterface
      */
@@ -54,11 +51,10 @@ interface TransactionInterface extends
     /**
      * Set the balances collection instance
      *
-     * Included values reflect the resulting balance when the transaction has been completed
+     * Included values reflect the resulting account balance when the transaction has been completed.
      *
-     * @param BalanceCollectionInterface $BalanceCollection
+     * @param BalanceCollectionInterface $balances
      * @return $this
      */
-    public function setBalances(BalanceCollectionInterface $BalanceCollection);
-
+    public function setBalances(BalanceCollectionInterface $balances);
 }

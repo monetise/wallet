@@ -15,6 +15,11 @@ class AccountObject implements AccountInterface
 {
     use AccountTrait;
 
+    /**
+     * Ctor
+     *
+     * @param AccountProviderInterface $account
+     */
     public function __construct(AccountProviderInterface $account)
     {
         $this->setId($account->getId());

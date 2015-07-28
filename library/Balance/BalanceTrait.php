@@ -8,11 +8,14 @@
  */
 namespace Monetise\Wallet\Balance;
 
+use Monetise\Money\Money\MoneyInterface;
+use Monetise\Money\Money\MoneyObject;
 use Monetise\Wallet\Account\AccountTrait;
 use Monetise\Wallet\Date\DateAwareTrait;
-use Monetise\Money\Money\MoneyObject;
-use Monetise\Money\Money\MoneyInterface;
 
+/**
+ * Class BalanceTrait
+ */
 trait BalanceTrait
 {
     use AccountTrait;
@@ -58,7 +61,6 @@ trait BalanceTrait
         $this->accountBalance = $accountBalance;
         return $this;
     }
-
 
     /**
      * @return MoneyInterface

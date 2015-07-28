@@ -8,10 +8,15 @@
  */
 namespace Monetise\Wallet\Transaction\Balance;
 
-use Monetise\Wallet\Transaction\Entry\EntryObject;
+use Monetise\Wallet\Account\AccountInterface;
+use Monetise\Wallet\Account\TypeAwareInterface;
+use Monetise\Wallet\Entry\EntryObject;
+use Monetise\Wallet\Exception;
 
 /**
  * Class BalanceObject
+ *
+ * @method AccountInterface getAccount()
  */
 class BalanceObject extends EntryObject implements BalanceInterface
 {
@@ -21,7 +26,23 @@ class BalanceObject extends EntryObject implements BalanceInterface
     protected $sequence = 0;
 
     /**
-     * @return int
+     * @param TypeAwareInterface $account
+     * @return $this
+     */
+    public function setAccount(TypeAwareInterface $account)
+    {
+        if (!$account instanceof AccountInterface) {
+            throw new Exception\InvalidArgumentException(sprintf(
+                'Transaction balance account must be an instance of %s; "%s" given',
+                AccountInterface::class,
+                get_class($account)
+            ));
+        }
+        return parent::setAccount($account);
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function getSequence()
     {
@@ -29,8 +50,7 @@ class BalanceObject extends EntryObject implements BalanceInterface
     }
 
     /**
-     * @param int $sequence
-     * @return $this
+     * {@inheritdoc}
      */
     public function setSequence($sequence)
     {
@@ -41,10 +61,10 @@ class BalanceObject extends EntryObject implements BalanceInterface
     /**
      * {@inheritdoc}
      */
-    public function compareSequence(BalanceInterface $Balance)
+    public function compareSequence(BalanceInterface $balance)
     {
-        if ($this->getAccount()->isEqualTo($Balance->getAccount())) {
-            return $this->getSequence() - $Balance->getSequence();
+        if ($this->getAccount()->equalTo($balance->getAccount())) {
+            return $this->getSequence() - $balance->getSequence();
         }
 
         return null;

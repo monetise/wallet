@@ -8,6 +8,9 @@
  */
 namespace Monetise\Wallet\Account;
 
+/**
+ * Interface ComparableInterface
+ */
 interface ComparableInterface
 {
     /**

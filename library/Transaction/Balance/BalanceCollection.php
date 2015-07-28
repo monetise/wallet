@@ -8,31 +8,30 @@
  */
 namespace Monetise\Wallet\Transaction\Balance;
 
-use Monetise\Wallet\Exception\InvalidArgumentException;
-use Monetise\Wallet\Transaction\Entry\EntryCollection;
+use Monetise\Wallet\Entry\EntryCollection;
+use Monetise\Wallet\Exception;
 
 /**
  * Class BalanceCollection
  */
 class BalanceCollection extends EntryCollection implements BalanceCollectionInterface
 {
-
+    /**
+     * Validate the value
+     *
+     * Checks that the value passed is allowed within the collection
+     *
+     * @param BalanceInterface $value
+     * @throws Exception\InvalidArgumentException
+     */
     public function validateValue($value)
     {
         if (!$value instanceof BalanceInterface) {
-            throw new InvalidArgumentException(sprintf(
-                'Value added in this collection must be instance of BalanceInterface, "%s" given.',
+            throw new Exception\InvalidArgumentException(sprintf(
+                'Value added in this collection must be instance of %s, "%s" given.',
+                BalanceInterface::class,
                 is_object($value) ? get_class($value) : gettype($value)
             ));
         }
     }
-
-    /**
-     * @return boolean
-     */
-    public function isValid()
-    {
-        return true;
-    }
-
 }

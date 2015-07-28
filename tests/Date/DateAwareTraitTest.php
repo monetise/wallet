@@ -57,6 +57,4 @@ class DateAwareTraitTest extends PHPUnit_Framework_TestCase
         // Test getter
         $this->assertSame($date, $this->traitObject->getDateModified());
     }
-
-
 }

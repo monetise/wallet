@@ -10,6 +10,7 @@ namespace Monetise\Wallet\Transaction;
 
 use Monetise\Wallet\Transaction\Balance\BalanceCollectionInterface;
 use Monetise\Wallet\Transaction\Balance\BalanceCollection;
+
 /**
  * trait BalanceReferenceAwareTrait
  */

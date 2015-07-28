@@ -9,7 +9,7 @@
         "matryoshka-model/matryoshka": "0.8.*@dev"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.3"
+        "phpunit/phpunit": "~4.7"
     },
     "authors": [
         {

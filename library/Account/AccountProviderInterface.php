@@ -13,5 +13,4 @@ namespace Monetise\Wallet\Account;
  */
 interface AccountProviderInterface extends AccountInterface
 {
-
 }

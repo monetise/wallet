@@ -22,5 +22,4 @@ interface AccountInterface extends TypeAwareInterface, ComparableInterface
      * @param string|null $id
      */
     public function setId($id);
-
 }

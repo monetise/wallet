@@ -6,10 +6,8 @@
  * @copyright   Copyright (c) 2015, Ripa Club
  * @license     https://github.com/monetise/wallet/blob/master/LICENSE
  */
-namespace Monetise\Wallet\Transaction\Entry;
+namespace Monetise\Wallet\Entry;
 
-use Monetise\Wallet\Account\AccountInterface;
-use Monetise\Wallet\Account\AccountProviderInterface;
 use Monetise\Money\Money\MoneyInterface;
 use Monetise\Wallet\Account\TypeAwareInterface;
 

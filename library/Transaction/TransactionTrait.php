@@ -10,12 +10,13 @@ namespace Monetise\Wallet\Transaction;
 
 use DateTime;
 use Monetise\Wallet\Date\DateAwareTrait;
+use Monetise\Wallet\Entry\AccountingCollectionInterface;
 use Monetise\Wallet\Transaction\Balance\BalanceCollection;
 use Monetise\Wallet\Transaction\Balance\BalanceCollectionInterface;
+use Monetise\Wallet\Transaction\Entry\AccountingCollection;
 use Monetise\Wallet\Transaction\Entry\EntryCollection;
 use Monetise\Wallet\Transaction\Entry\EntryCollectionInterface;
 use Monetise\Wallet\Exception\InvalidArgumentException;
-
 
 /**
  * Trait TransactionTrait
@@ -24,9 +25,8 @@ trait TransactionTrait
 {
     use DateAwareTrait;
 
-
     /**
-     * @var EntryCollectionInterface
+     * @var AccountingCollectionInterface
      */
     protected $entries;
 
@@ -35,66 +35,64 @@ trait TransactionTrait
      */
     protected $balances;
 
-
     /**
-     * Get entry collection instance
+     * Get entries collection instance
      *
-     * Use ->getEntries()->add($entry) to add a single entry.
-     * The sum of all entries in a transaction must be zero.
+     * Use ->getEntries()->append($entry) to add a single entry.
+     * The total of all entries in a accounting transaction must be zero.
      *
-     * @return EntryCollectionInterface
+     * @return AccountingCollectionInterface
      */
     public function getEntries()
     {
         if (null === $this->entries) {
-            $this->entries = new EntryCollection();
+            $this->entries = new AccountingCollection;
         }
 
         return $this->entries;
     }
 
     /**
-     * Set entry collection instance
+     * Set entries collection instance
      *
-     * Entries are linked together so that their sum in a transaction is zero.
+     * The total of all entries in a accounting transaction must be zero.
      *
-     * @param EntryCollectionInterface $entryCollection
+     * @param AccountingCollectionInterface $entries
      * @return $this
      */
-    public function setEntries(EntryCollectionInterface $entryCollection)
+    public function setEntries(AccountingCollectionInterface $entries)
     {
-        $this->entries = $entryCollection;
-        return $entryCollection;
+        $this->entries = $entries;
+        return $entries;
     }
 
-
     /**
-     * Get the balance entry collection instance
+     * Get the balances collection instance
      *
-     * Included values reflect the resulting balance when the transaction has been completed.
+     * Included values reflect the resulting account balance when the transaction has been completed.
      *
      * @return BalanceCollectionInterface
      */
     public function getBalances()
     {
         if (null === $this->balances) {
-            $this->balances = new BalanceCollection();
+            $this->balances = new BalanceCollection;
         }
 
         return $this->balances;
     }
 
     /**
-     * Set the balance entry collection instance
+     * Set the balances collection instance
      *
-     * Included values reflect the resulting balance when the transaction has been completed.
+     * Included values reflect the resulting account balance when the transaction has been completed.
      *
-     * @param BalanceCollectionInterface $BalanceCollection
+     * @param BalanceCollectionInterface $balances
      * @return $this
      */
-    public function setBalances(BalanceCollectionInterface $BalanceCollection)
+    public function setBalances(BalanceCollectionInterface $balances)
     {
-        $this->balances = $BalanceCollection;
+        $this->balances = $balances;
         return $this;
     }
 }

@@ -20,7 +20,6 @@ trait AccountTrait
      */
     protected $id;
 
-
     /**
      * {@inheritdoc}
      */
