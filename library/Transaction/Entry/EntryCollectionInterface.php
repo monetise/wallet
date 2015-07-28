@@ -19,7 +19,7 @@ use Monetise\Wallet\Account\ComparableInterface;
 interface EntryCollectionInterface extends Traversable
 {
     /**
-     * Check if an account is present into the entry list
+     * Check if entry list contains the given account
      *
      * @param ComparableInterface $account
      * @return boolean

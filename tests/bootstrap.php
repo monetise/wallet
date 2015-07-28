@@ -4,9 +4,8 @@
  *
  * @link        https://github.com/monetise/wallet
  * @copyright   Copyright (c) 2015, Ripa Club
- * @license     https://github.com/monetise/wallet/blob/develop/LICENSE
+ * @license     https://github.com/monetise/wallet/blob/master/LICENSE
  */
-
 chdir(__DIR__);
 
 if (!file_exists('../vendor/autoload.php')) {
