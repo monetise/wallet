@@ -12,52 +12,52 @@ use Monetise\Money\Money\MoneyInterface;
 use Monetise\Wallet\Account\ComparableInterface;
 
 /**
- * Interface CollectionInterface
+ * Interface ItemCollectionInterface
  */
-interface CollectionInterface extends \Traversable
+interface ItemCollectionInterface extends \Traversable
 {
     /**
-     * Check that collection contains the given account
+     * Check that collection contains an item matching the given account
      *
      * The given account must be comparable.
      *
      * @param ComparableInterface $account
      * @return boolean
      */
-    public function has(ComparableInterface $account);
+    public function hasAccount(ComparableInterface $account);
 
     /**
-     * Extract from current collection all entries matching the given account,
+     * Extract from current collection all items matching the given account,
      * returning them wrapped in a new collection
      *
      * The given account must be comparable.
      *
      * @param ComparableInterface $account
-     * @return CollectionInterface
+     * @return ItemCollectionInterface
      */
-    public function filter(ComparableInterface $account);
+    public function filterByAccount(ComparableInterface $account);
 
     /**
-     * Extract from current collection the first entry matching the given account,
+     * Extract from current collection the first item matching the given account,
      * or null if no match is found.
      *
      * The given account must be comparable.
      *
      * @param ComparableInterface $account
-     * @return ComparableInterface|null
+     * @return mixed
      */
-    public function get(ComparableInterface $account);
+    public function getByAccount(ComparableInterface $account);
 
     /**
-     * Sum the amounts of the entries matching the given account,
+     * Sum the amounts of the items matching the given account,
      * or null if no match is found.
      *
-     * The sum can be optionally restricted to wallet accounts (@see $onlyWallets).
+     * The sum can be optionally restricted to internal accounts (@see $onlyInternals) matching the given account.
      * The given account must be comparable.
      *
      * @param ComparableInterface $account
-     * @param bool $onlyWallets
+     * @param bool $onlyInternals
      * @return MoneyInterface|null
      */
-    public function sum(ComparableInterface $account, $onlyWallets = false);
+    public function sumByAccount(ComparableInterface $account, $onlyInternals = false);
 }
