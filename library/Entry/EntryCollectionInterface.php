@@ -9,6 +9,7 @@
 namespace Monetise\Wallet\Entry;
 
 use Monetise\Wallet\Account\ComparableInterface;
+use Monetise\Wallet\Account\AccountInterface;
 use Monetise\Wallet\Exception;
 
 /**
@@ -55,4 +56,12 @@ interface EntryCollectionInterface extends \Traversable
      * @return EntryInterface
      */
     public function getByAccount(ComparableInterface $account);
+
+    /**
+     * Return an array of accounts that are instances of the given interface
+     *
+     * @param string $interface
+     * @return array
+     */
+    public function getAccountsByInterface($interface = AccountInterface::class);
 }
