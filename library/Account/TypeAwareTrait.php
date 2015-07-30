@@ -19,7 +19,10 @@ trait TypeAwareTrait
     protected $type;
 
     /**
-     * {@inheritdoc}
+     * Set the account type
+     *
+     * @param string $type
+     * @return $this
      */
     public function setType($type)
     {
@@ -28,7 +31,9 @@ trait TypeAwareTrait
     }
 
     /**
-     * {@inheritdoc}
+     * Get the account type
+     *
+     * @return string
      */
     public function getType()
     {

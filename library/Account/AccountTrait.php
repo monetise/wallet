@@ -18,10 +18,18 @@ trait AccountTrait
      */
     protected $id;
 
+    /**
+     * Get the account type
+     *
+     * @return string
+     */
     abstract public function getType();
 
     /**
-     * {@inheritdoc}
+     * Whether current external account is equal to the given account
+     *
+     * @param TypeAwareInterface $account
+     * @return bool
      */
     public function equalTo(TypeAwareInterface $account)
     {
@@ -31,7 +39,10 @@ trait AccountTrait
     }
 
     /**
-     * {@inheritdoc}
+     * Set the account id
+     *
+     * @param string|null $id
+     * @return $this
      */
     public function setId($id)
     {
@@ -40,7 +51,9 @@ trait AccountTrait
     }
 
     /**
-     * {@inheritdoc}
+     * Get the account id
+     *
+     * @return string|null
      */
     public function getId()
     {

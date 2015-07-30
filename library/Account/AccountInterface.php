@@ -14,12 +14,17 @@ namespace Monetise\Wallet\Account;
 interface AccountInterface extends TypeAwareInterface, ComparableInterface
 {
     /**
-     * {@inheritdoc}
+     * Get the account id
+     *
+     * @return string|null
      */
     public function getId();
 
     /**
+     * Set the account id
+     *
      * @param string|null $id
+     * @return $this
      */
     public function setId($id);
 }

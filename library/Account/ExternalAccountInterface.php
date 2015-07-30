@@ -14,11 +14,15 @@ namespace Monetise\Wallet\Account;
 interface ExternalAccountInterface extends TypeAwareInterface, ComparableInterface
 {
     /**
+     * Get the external identifier
+     *
      * @return string
      */
     public function getExternalId();
 
     /**
+     * Set the external identifier
+     *
      * @param string $externalId
      * @return $this
      */
