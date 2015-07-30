@@ -6,7 +6,7 @@
  * @copyright   Copyright (c) 2015, Ripa Club
  * @license     https://github.com/monetise/wallet/blob/master/LICENSE
  */
-namespace MonetiseTest\Balance;
+namespace MonetiseWalletTest\Balance;
 
 use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
 use Monetise\Wallet\Balance\BalanceInterface;

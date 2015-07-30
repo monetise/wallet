@@ -10,7 +10,7 @@ namespace Monetise\Wallet\Transaction;
 
 use Monetise\Wallet\Date\DateAwareInterface;
 use Monetise\Wallet\Entry\AccountingCollectionInterface;
-use Monetise\Wallet\Transaction\Balance\BalanceCollectionInterface;
+use Monetise\Wallet\Transaction\Balance;
 
 /**
  * Interface TransactionInterface
@@ -44,7 +44,7 @@ interface TransactionInterface extends DateAwareInterface
      *
      * Included values reflect the resulting account balance when the transaction has been completed.
      *
-     * @return BalanceCollectionInterface
+     * @return Balance\BalanceCollectionInterface
      */
     public function getBalances();
 
@@ -53,8 +53,8 @@ interface TransactionInterface extends DateAwareInterface
      *
      * Included values reflect the resulting account balance when the transaction has been completed.
      *
-     * @param BalanceCollectionInterface $balances
+     * @param Balance\BalanceCollectionInterface $balances
      * @return $this
      */
-    public function setBalances(BalanceCollectionInterface $balances);
+    public function setBalances(Balance\BalanceCollectionInterface $balances);
 }

@@ -6,12 +6,12 @@
  * @copyright   Copyright (c) 2015, Ripa Club
  * @license     https://github.com/monetise/wallet/blob/master/LICENSE
  */
-namespace MonetiseTest\Wallet\Account;
+namespace MonetiseWalletTest\Account;
 
-use PHPUnit_Framework_TestCase;
 use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
 use Monetise\Wallet\Account\ExternalAccountInterface;
 use Monetise\Wallet\Account\ExternalAccountObject;
+use PHPUnit_Framework_TestCase;
 use Zend\Stdlib\Hydrator\HydratorAwareInterface;
 use Zend\Stdlib\Hydrator\ObjectProperty;
 

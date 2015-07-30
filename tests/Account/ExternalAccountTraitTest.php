@@ -6,10 +6,8 @@
  * @copyright   Copyright (c) 2015, Ripa Club
  * @license     https://github.com/monetise/wallet/blob/master/LICENSE
  */
-namespace MonetiseTest\Wallet\Account;
+namespace MonetiseWalletTest\Account;
 
-use Monetise\Wallet\Account\AccountObject;
-use Monetise\Wallet\Account\AccountTrait;
 use Monetise\Wallet\Account\ExternalAccountObject;
 use Monetise\Wallet\Account\ExternalAccountTrait;
 use PHPUnit_Framework_TestCase;

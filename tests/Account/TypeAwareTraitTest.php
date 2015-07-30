@@ -6,7 +6,7 @@
  * @copyright   Copyright (c) 2015, Ripa Club
  * @license     https://github.com/monetise/wallet/blob/master/LICENSE
  */
-namespace MonetiseTest\Wallet\Account;
+namespace MonetiseWalletTest\Account;
 
 use Monetise\Wallet\Account\TypeAwareTrait;
 use PHPUnit_Framework_TestCase;

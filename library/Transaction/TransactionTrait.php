@@ -57,7 +57,7 @@ trait TransactionTrait
     public function setEntries(AccountingCollectionInterface $entries)
     {
         $this->entries = $entries;
-        return $entries;
+        return $this;
     }
 
     /**

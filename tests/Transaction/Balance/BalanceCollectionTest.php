@@ -6,10 +6,12 @@
  * @copyright   Copyright (c) 2015, Ripa Club
  * @license     https://github.com/monetise/wallet/blob/master/LICENSE
  */
-namespace MonetiseTest\Wallet\Transaction\Balance;
+namespace MonetiseWalletTest\Transaction\Balance;
 
 /**
  * Class BalanceCollectionTest
+ *
+ * @group transaction
  */
 class BalanceCollectionTest extends \PHPUnit_Framework_TestCase
 {

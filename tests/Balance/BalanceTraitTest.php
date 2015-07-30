@@ -6,7 +6,7 @@
  * @copyright   Copyright (c) 2015, Ripa Club
  * @license     https://github.com/monetise/wallet/blob/master/LICENSE
  */
-namespace MonetiseTest\Balance;
+namespace MonetiseWalletTest\Balance;
 
 use Monetise\Money\Money\MoneyObject;
 use Monetise\Wallet\Balance\BalanceTrait;

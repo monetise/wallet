@@ -30,8 +30,12 @@
     ],
     "autoload": {
         "psr-4": {
-        	"Monetise\\Wallet\\": "library/",
-        	"Monetise\\WalletTest\\": "tests/"
+        	"Monetise\\Wallet\\": "library/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+          "MonetiseWalletTest\\": "tests/"
         }
     },
     "repositories": [
