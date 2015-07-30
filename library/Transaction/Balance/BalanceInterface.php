@@ -10,11 +10,12 @@ namespace Monetise\Wallet\Transaction\Balance;
 
 use Monetise\Wallet\Account\AccountInterface;
 use Monetise\Wallet\Entry\EntryInterface;
+use Monetise\Wallet\Sequence\SequenceAwareInterface;
 
 /**
  * Interface BalanceInterface
  */
-interface BalanceInterface extends EntryInterface
+interface BalanceInterface extends EntryInterface, SequenceAwareInterface
 {
     /**
      * @return AccountInterface
@@ -22,22 +23,9 @@ interface BalanceInterface extends EntryInterface
     public function getAccount();
 
     /**
-     * Get the sequence number
-     *
-     * @return int
-     */
-    public function getSequence();
-
-    /**
-     * Set the sequence number
-     *
-     * @param int $sequence
-     * @return $this
-     */
-    public function setSequence($sequence);
-
-    /**
      * Compare current balance with the given balance through their sequence numbers
+     *
+     * Comparation happens only if the balances share the account
      *
      * @param BalanceInterface $balance     A balance to compare with
      * @return int|null                     >0 if current balance succeeds the given balance,

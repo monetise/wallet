@@ -26,7 +26,7 @@ use Monetise\Wallet\Sequence\SequenceAwareTrait;
  *
  * @method AccountInterface getAccount()
  */
-class BalanceObject extends EntryObject implements BalanceInterface, SequenceAwareInterface
+class BalanceObject extends EntryObject implements BalanceInterface
 {
     use SequenceAwareTrait;
 
@@ -51,7 +51,7 @@ class BalanceObject extends EntryObject implements BalanceInterface, SequenceAwa
      */
     public function compareSequence(BalanceInterface $balance)
     {
-        if ($this->getAccount()->equalTo($balance->getAccount())) {
+        if ($balance->getAccount() && $this->getAccount()->equalTo($balance->getAccount())) {
             return $this->getSequence() - $balance->getSequence();
         }
 

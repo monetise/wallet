@@ -69,4 +69,24 @@ class BalanceObjectTest extends \PHPUnit_Framework_TestCase
         );
         $balance->setAccount($wrongInput);
     }
+
+    public function testCompareSequence()
+    {
+        $account = (new AccountObject)->setType('Wallet');
+        $balance = (new Balance\BalanceObject)->setAccount($account);
+
+        // Target balance without an account
+        $this->assertNull($balance->compareSequence(new Balance\BalanceObject));
+
+
+        $target = (new Balance\BalanceObject)->setAccount($account);
+        $comparation = $balance->compareSequence($target);
+        $this->assertInternalType('integer', $comparation);
+        $this->assertEquals(0, $comparation);
+
+        $newSequence = 1;
+        $target->setSequence($newSequence);
+        $comparation = $balance->compareSequence($target);
+        $this->assertEquals(-$newSequence, $comparation);
+    }
 }
