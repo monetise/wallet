@@ -8,6 +8,7 @@
  */
 namespace Monetise\Wallet\Entry;
 
+use Monetise\Money\Money\MoneyInterface;
 use Monetise\Wallet\Account\ComparableInterface;
 use Monetise\Wallet\Account\AccountInterface;
 use Monetise\Wallet\Exception;
@@ -36,7 +37,7 @@ interface EntryCollectionInterface extends \Traversable
     public function hasAccount(ComparableInterface $account);
 
     /**
-     * Extract from current collection all entries matching the given account,
+     * Extract from current collection all the entries matching the given account,
      * returning them wrapped in a new collection
      *
      * The given account must be comparable.
@@ -45,6 +46,15 @@ interface EntryCollectionInterface extends \Traversable
      * @return EntryCollectionInterface
      */
     public function filterByAccount(ComparableInterface $account);
+
+    /**
+     * Extract from currenct collection all the entries which amount (quantity and currency)
+     * is equal to the given amount
+     *
+     * @param MoneyInterface $amount
+     * @return EntryCollectionInterface
+     */
+    public function filterByAmount(MoneyInterface $amount);
 
     /**
      * Extract from current collection the first entry matching the given account,

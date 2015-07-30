@@ -8,6 +8,7 @@
  */
 namespace Monetise\Wallet\Entry;
 
+use Monetise\Money\Money\MoneyInterface;
 use Monetise\Wallet\Account\AccountInterface;
 use Monetise\Wallet\Account\ComparableInterface;
 use Monetise\Wallet\Account\TypeAwareInterface;
@@ -46,7 +47,12 @@ trait EntryCollectionTrait
     }
 
     /**
-     * {@inheritdoc}
+     * Check that collection contains an entry matching the given account
+     *
+     * The given account must be comparable.
+     *
+     * @param ComparableInterface $account
+     * @return boolean
      */
     public function hasAccount(ComparableInterface $account)
     {
@@ -61,7 +67,13 @@ trait EntryCollectionTrait
     }
 
     /**
-     * {@inheritdoc}
+     * Extract from current collection all the entries matching the given account,
+     * returning them wrapped in a new collection
+     *
+     * The given account must be comparable.
+     *
+     * @param ComparableInterface $account
+     * @return EntryCollectionInterface
      */
     public function filterByAccount(ComparableInterface $account)
     {
@@ -73,11 +85,39 @@ trait EntryCollectionTrait
                 $filteredCollection->append($entry);
             }
         }
+
         return $filteredCollection;
     }
 
     /**
-     * {@inheritdoc}
+     * Extract from currenct collection all the entries which amount (quantity and currency)
+     * is equal to the given amount
+     *
+     * @param MoneyInterface $amount
+     * @return EntryCollectionInterface
+     */
+    public function filterByAmount(MoneyInterface $amount)
+    {
+        /** @var $filteredCollection EntryCollectionInterface */
+        $filteredCollection = new static;
+        /* @var $entry EntryInterface */
+        foreach ($this as $entry) {
+            if ($amount->equalTo($entry->getAmount())) {
+                $filteredCollection->append($entry);
+            }
+        }
+
+        return $filteredCollection;
+    }
+
+    /**
+     * Extract from current collection the first entry matching the given account,
+     * or null if no match is found.
+     *
+     * The given account must be comparable.
+     *
+     * @param ComparableInterface $account
+     * @return EntryInterface
      */
     public function getByAccount(ComparableInterface $account)
     {
