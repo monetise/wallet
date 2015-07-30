@@ -17,19 +17,20 @@ use Monetise\Wallet\Balance\BalanceObject;
 
 /**
  * Class AccountObjectTest
+ *
+ * @group account
  */
 class AccountObjectTest extends PHPUnit_Framework_TestCase
 {
-
     public function testImplementsAccountInterface()
     {
-        $account = new AccountObject();
+        $account = new AccountObject;
         $this->assertInstanceOf(AccountInterface::class, $account);
     }
 
     public function testHydrator()
     {
-        $account = new AccountObject();
+        $account = new AccountObject;
         $this->assertInstanceOf(HydratorAwareInterface::class, $account);
 
         // Test default
@@ -38,18 +39,16 @@ class AccountObjectTest extends PHPUnit_Framework_TestCase
 
     public function testCtor()
     {
-        $account = new AccountObject();
+        $account = new AccountObject;
         $this->assertNull($account->getId());
         $this->assertNull($account->getType());
 
-        $accountProvider = new BalanceObject();
+        $accountProvider = new BalanceObject;
         $accountProvider->setId('foo');
         $accountProvider->setType('baz');
 
         $account = new AccountObject($accountProvider);
         $this->assertSame($accountProvider->getId(), $account->getId());
         $this->assertSame($accountProvider->getType(), $account->getType());
-
     }
-
 }

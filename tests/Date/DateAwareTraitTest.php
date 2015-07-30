@@ -13,11 +13,15 @@ use Monetise\Wallet\Date\DateAwareTrait;
 
 /**
  * Class DateAwareTraitTest
+ *
+ * @group date
  */
 class DateAwareTraitTest extends PHPUnit_Framework_TestCase
 {
 
-    /** @var DateAwareTraitTest */
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
     protected $traitObject;
 
 
@@ -28,33 +32,39 @@ class DateAwareTraitTest extends PHPUnit_Framework_TestCase
 
     public function testGetSetDateCreated()
     {
+        /* @var $traitObject DateAwareTrait */
+        $traitObject = $this->traitObject;
+
         // Test default
-        $this->assertNull($this->traitObject->getDateCreated());
-        $this->assertAttributeEquals(null, 'dateCreated', $this->traitObject);
+        $this->assertNull($traitObject->getDateCreated());
+        $this->assertAttributeEquals(null, 'dateCreated', $traitObject);
 
         $date = new \DateTime;
 
         // Test setter
-        $this->assertSame($this->traitObject, $this->traitObject->setDateCreated($date));
-        $this->assertAttributeEquals($date, 'dateCreated', $this->traitObject);
+        $this->assertSame($traitObject, $traitObject->setDateCreated($date));
+        $this->assertAttributeEquals($date, 'dateCreated', $traitObject);
 
         // Test getter
-        $this->assertSame($date, $this->traitObject->getDateCreated());
+        $this->assertSame($date, $traitObject->getDateCreated());
     }
 
     public function testGetSetDateModified()
     {
+        /* @var $traitObject DateAwareTrait */
+        $traitObject = $this->traitObject;
+
         // Test default
-        $this->assertNull($this->traitObject->getDateModified());
-        $this->assertAttributeEquals(null, 'dateModified', $this->traitObject);
+        $this->assertNull($traitObject->getDateModified());
+        $this->assertAttributeEquals(null, 'dateModified', $traitObject);
 
         $date = new \DateTime;
 
         // Test setter
-        $this->assertSame($this->traitObject, $this->traitObject->setDateModified($date));
-        $this->assertAttributeEquals($date, 'dateModified', $this->traitObject);
+        $this->assertSame($traitObject, $traitObject->setDateModified($date));
+        $this->assertAttributeEquals($date, 'dateModified', $traitObject);
 
         // Test getter
-        $this->assertSame($date, $this->traitObject->getDateModified());
+        $this->assertSame($date, $traitObject->getDateModified());
     }
 }

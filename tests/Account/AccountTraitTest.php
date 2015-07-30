@@ -14,13 +14,15 @@ use Monetise\Wallet\Account\AccountObject;
 
 /**
  * Class AccountTraitTest
+ *
+ * @group account
  */
 class AccountTraitTest extends PHPUnit_Framework_TestCase
 {
-
-    /** @var AccountTraitTest */
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
     protected $traitObject;
-
 
     public function setUp()
     {
@@ -29,17 +31,19 @@ class AccountTraitTest extends PHPUnit_Framework_TestCase
 
     public function testGetSetId()
     {
-        // Test default
-        $this->assertNull($this->traitObject->getId());
-        $this->assertAttributeEquals(null, 'id', $this->traitObject);
+        /* @var $traitObject AccountTrait */
+        $traitObject = $this->traitObject;
 
+        // Test default
+        $this->assertNull($traitObject->getId());
+        $this->assertAttributeEquals(null, 'id', $traitObject);
 
         // Test setter
-        $this->assertSame($this->traitObject, $this->traitObject->setId('foo'));
-        $this->assertAttributeEquals('foo', 'id', $this->traitObject);
+        $this->assertSame($traitObject, $traitObject->setId('foo'));
+        $this->assertAttributeEquals('foo', 'id', $traitObject);
 
         // Test getter
-        $this->assertSame('foo', $this->traitObject->getId());
+        $this->assertSame('foo', $traitObject->getId());
     }
 
     public function testEqualTo()
@@ -50,14 +54,16 @@ class AccountTraitTest extends PHPUnit_Framework_TestCase
         $accountB = new AccountObject();
         $accountB->setId('B')->setType('Foo');
 
-        $this->traitObject->setId('A');
+        /* @var $traitObject AccountTrait */
+        $traitObject = $this->traitObject;
+
+        $traitObject->setId('A');
 
         $this->traitObject->expects($this->atLeastOnce())
              ->method('getType')
              ->willReturn('Foo');
 
-        $this->assertTrue($this->traitObject->equalTo($accountA));
-        $this->assertFalse($this->traitObject->equalTo($accountB));
+        $this->assertTrue($traitObject->equalTo($accountA));
+        $this->assertFalse($traitObject->equalTo($accountB));
     }
-
 }
