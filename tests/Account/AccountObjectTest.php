@@ -14,6 +14,7 @@ use Monetise\Wallet\Account\AccountObject;
 use Zend\Stdlib\Hydrator\HydratorAwareInterface;
 use Matryoshka\Model\Hydrator\ClassMethods;
 use Monetise\Wallet\Balance\BalanceObject;
+use Zend\Stdlib\Hydrator\ObjectProperty;
 
 /**
  * Class AccountObjectTest
@@ -35,6 +36,11 @@ class AccountObjectTest extends PHPUnit_Framework_TestCase
 
         // Test default
         $this->assertInstanceOf(ClassMethods::class, $account->getHydrator());
+
+        // Other hydrator
+        $anotherHydrator = new ObjectProperty;
+        $account->setHydrator($anotherHydrator);
+        $this->assertSame($anotherHydrator, $account->getHydrator());
     }
 
     public function testCtor()

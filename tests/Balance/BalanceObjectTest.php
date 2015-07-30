@@ -12,6 +12,7 @@ use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
 use Monetise\Wallet\Balance\BalanceInterface;
 use Monetise\Wallet\Balance\BalanceObject;
 use Zend\Stdlib\Hydrator\HydratorAwareInterface;
+use Zend\Stdlib\Hydrator\ObjectProperty;
 
 /**
  * Class BalanceObjectTest
@@ -33,5 +34,10 @@ class BalanceObjectTest extends \PHPUnit_Framework_TestCase
 
         // Test default
         $this->assertInstanceOf(MatryoshkaClassMethods::class, $balance->getHydrator());
+
+        // Other hydrator
+        $anotherHydrator = new ObjectProperty;
+        $balance->setHydrator($anotherHydrator);
+        $this->assertSame($anotherHydrator, $balance->getHydrator());
     }
 }

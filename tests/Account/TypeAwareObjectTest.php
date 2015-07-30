@@ -10,27 +10,27 @@ namespace MonetiseTest\Wallet\Account;
 
 use PHPUnit_Framework_TestCase;
 use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
-use Monetise\Wallet\Account\ExternalAccountInterface;
-use Monetise\Wallet\Account\ExternalAccountObject;
+use Monetise\Wallet\Account\TypeAwareInterface;
+use Monetise\Wallet\Account\TypeAwareObject;
 use Zend\Stdlib\Hydrator\HydratorAwareInterface;
 use Zend\Stdlib\Hydrator\ObjectProperty;
 
 /**
- * Class ExternalAccountObjectTest
+ * Class TypeAwareObjectTest
  *
  * @group account
  */
-class ExternalAccountObjectTest extends PHPUnit_Framework_TestCase
+class TypeAwareObjectTest extends PHPUnit_Framework_TestCase
 {
     public function testImplementsAccountInterface()
     {
-        $account = new ExternalAccountObject;
-        $this->assertInstanceOf(ExternalAccountInterface::class, $account);
+        $account = new TypeAwareObject;
+        $this->assertInstanceOf(TypeAwareInterface::class, $account);
     }
 
     public function testHydrator()
     {
-        $account = new ExternalAccountObject;
+        $account = new TypeAwareObject;
         $this->assertInstanceOf(HydratorAwareInterface::class, $account);
 
         // Test default

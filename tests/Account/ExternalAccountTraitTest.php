@@ -8,9 +8,11 @@
  */
 namespace MonetiseTest\Wallet\Account;
 
-use PHPUnit_Framework_TestCase;
-use Monetise\Wallet\Account\AccountTrait;
 use Monetise\Wallet\Account\AccountObject;
+use Monetise\Wallet\Account\AccountTrait;
+use Monetise\Wallet\Account\ExternalAccountObject;
+use Monetise\Wallet\Account\ExternalAccountTrait;
+use PHPUnit_Framework_TestCase;
 
 /**
  * Class ExternalAccountTraitTest
@@ -26,38 +28,38 @@ class ExternalAccountTraitTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->traitObject = $this->getMockForTrait(AccountTrait::class);
+        $this->traitObject = $this->getMockForTrait(ExternalAccountTrait::class);
     }
 
-    public function testGetSetId()
+    public function testGetSetExternalId()
     {
-        /* @var $traitObject AccountTrait */
+        /* @var $traitObject ExternalAccountTrait */
         $traitObject = $this->traitObject;
 
         // Test default
-        $this->assertNull($traitObject->getId());
-        $this->assertAttributeEquals(null, 'id', $traitObject);
+        $this->assertNull($traitObject->getExternalId());
+        $this->assertAttributeEquals(null, 'externalId', $traitObject);
 
         // Test setter
-        $this->assertSame($traitObject, $traitObject->setId('foo'));
-        $this->assertAttributeEquals('foo', 'id', $traitObject);
+        $this->assertSame($traitObject, $traitObject->setExternalId('foo'));
+        $this->assertAttributeEquals('foo', 'externalId', $traitObject);
 
         // Test getter
-        $this->assertSame('foo', $traitObject->getId());
+        $this->assertSame('foo', $traitObject->getExternalId());
     }
 
     public function testEqualTo()
     {
-        $accountA = new AccountObject();
-        $accountA->setId('A')->setType('Foo');
+        $accountA = new ExternalAccountObject;
+        $accountA->setExternalId('A')->setType('Foo');
 
-        $accountB = new AccountObject();
-        $accountB->setId('B')->setType('Foo');
+        $accountB = new ExternalAccountObject;
+        $accountB->setExternalId('B')->setType('Foo');
 
-        /* @var $traitObject AccountTrait */
+        /* @var $traitObject ExternalAccountTrait */
         $traitObject = $this->traitObject;
 
-        $traitObject->setId('A');
+        $traitObject->setExternalId('A');
 
         $this->traitObject->expects($this->atLeastOnce())
              ->method('getType')
