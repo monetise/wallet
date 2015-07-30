@@ -8,6 +8,7 @@
  */
 namespace Monetise\Wallet\Entry;
 
+use Monetise\Money\Exception\UnexpectedValueException;
 use Monetise\Money\Money\MoneyInterface;
 use Monetise\Wallet\Account\AccountInterface;
 use Monetise\Wallet\Account\ComparableInterface;
@@ -86,26 +87,32 @@ trait AccountingCollectionTrait
     }
 
     /**
-     * // TODO: modify
-     * Whether all entry amounts sum to zero
+     * Retrieve all the distinct currencies
+     *
+     * @return array
+     */
+    abstract public function extractCurrencies();
+
+    /**
+     * Whether all the entry amounts regarding the same currency sum to zero or not
      *
      * @return bool
      */
     public function isValid()
     {
-        $moneyCheck = null;
-
-        /* @var $entry EntryInterface */
-        foreach ($this as $entry) {
-            if (!$moneyCheck) {
-                /* @var $moneyCheck MoneyInterface */
-                $moneyCheck = clone $entry->getAmount();
-            } else {
-                /* @var $moneyCheck MoneyInterface */
-                $moneyCheck->add($entry->getAmount());
+        foreach ($this->extractCurrencies() as $currency) {
+            $sum = $this->sumByCurrency($currency);
+            if (!$sum) {
+                throw new UnexpectedValueException(sprintf(
+                    'A sum for the existing currency "%s" must necessary exist',
+                    $currency
+                ));
+            }
+            if ($sum->getAmount() !== 0) {
+                return false;
             }
         }
 
-        return $moneyCheck === null || $moneyCheck->getAmount() === 0;
+        return true;
     }
 }

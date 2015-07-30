@@ -47,7 +47,7 @@ interface AccountingCollectionInterface extends EntryCollectionInterface
     public function sumAccountInterfaceOnly();
 
     /**
-     * Whether all entry amounts sum to zero
+     * Whether all the entry amounts regarding the same currency sum to zero or not
      *
      * @return bool
      */
