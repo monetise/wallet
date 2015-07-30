@@ -29,6 +29,17 @@ interface AccountingCollectionInterface extends EntryCollectionInterface
     public function sumByAccount(ComparableInterface $account);
 
     /**
+     * Sum only the amounts of the entries which currency matches the given currency,
+     * or null if no match is found.
+     *
+     * The given parameter must be a (valid ISO 4217 alpha-3) currency code.
+     *
+     * @param string $currency
+     * @return MoneyInterface|null
+     */
+    public function sumByCurrency($currency);
+
+    /**
      * Sum only the amounts of the entries having an AccountInterface account.
      *
      * @return MoneyInterface|null

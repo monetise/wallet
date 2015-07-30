@@ -21,7 +21,6 @@ trait AccountingCollectionTrait
      * Sum the amounts of the entries matching the given account,
      * or null if no match is found.
      *
-     * The sum can be optionally restricted to internal accounts (@see $onlyInternals) matching the given account.
      * The given account must be comparable.
      *
      * @param ComparableInterface $account
@@ -35,6 +34,30 @@ trait AccountingCollectionTrait
         /* @var $entry EntryInterface */
         foreach ($this as $entry) {
             if ($account->equalTo($entry->getAccount())) {
+                $money = $money === null ? clone $entry->getAmount() : $money->add($entry->getAmount());
+            }
+        }
+
+        return $money;
+    }
+
+    /**
+     * Sum only the amounts of the entries which currency matches the given currency,
+     * or null if no match is found.
+     *
+     * The given parameter must be a (valid ISO 4217 alpha-3) currency code.
+     *
+     * @param string $currency
+     * @return MoneyInterface|null
+     */
+    public function sumByCurrency($currency)
+    {
+        /* @var $money MoneyInterface */
+        $money = null;
+
+        /* @var $entry EntryInterface */
+        foreach ($this as $entry) {
+            if ($entry->getAmount()->getCurrency() === $currency) {
                 $money = $money === null ? clone $entry->getAmount() : $money->add($entry->getAmount());
             }
         }

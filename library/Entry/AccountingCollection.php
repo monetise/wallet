@@ -8,13 +8,10 @@
  */
 namespace Monetise\Wallet\Entry;
 
-use Matryoshka\Model\Object\AbstractCollection as MatryoshkaAbstractCollection;
-
 /**
  * Class AccountingCollection
  */
-class AccountingCollection extends MatryoshkaAbstractCollection implements AccountingCollectionInterface
+class AccountingCollection extends EntryCollection implements AccountingCollectionInterface
 {
     use AccountingCollectionTrait;
-    use EntryCollectionTrait;
 }
