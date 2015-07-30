@@ -28,26 +28,6 @@ class BalanceTraitTest extends \PHPUnit_Framework_TestCase
         $this->traitObject = $this->getMockForTrait(BalanceTrait::class);
     }
 
-    public function testGetSetSequence()
-    {
-        /* @var $traitObject BalanceTrait */
-        $traitObject = $this->traitObject;
-
-        // Test default
-        $this->assertInternalType('integer', $startSequenceNum = $traitObject->getSequence());
-        $this->assertEmpty($startSequenceNum);
-
-        // Test setter
-        $this->assertSame($traitObject, $traitObject->setSequence(null));
-        $this->assertAttributeEquals(0, 'sequence', $traitObject);
-        $testSequence = 1;
-        $this->assertSame($traitObject, $traitObject->setSequence($testSequence));
-        $this->assertAttributeEquals($testSequence, 'sequence', $traitObject);
-
-        // Test getter
-        $this->assertSame($testSequence, $traitObject->getSequence());
-    }
-
     public function testGetSetPendingTransactions()
     {
         /* @var $traitObject BalanceTrait */

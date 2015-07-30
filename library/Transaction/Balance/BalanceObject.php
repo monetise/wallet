@@ -18,18 +18,17 @@ use Monetise\Wallet\Account\AccountInterface;
 use Monetise\Wallet\Account\TypeAwareInterface;
 use Monetise\Wallet\Entry\EntryObject;
 use Monetise\Wallet\Exception;
+use Monetise\Wallet\Sequence\SequenceAwareInterface;
+use Monetise\Wallet\Sequence\SequenceAwareTrait;
 
 /**
  * Class BalanceObject
  *
  * @method AccountInterface getAccount()
  */
-class BalanceObject extends EntryObject implements BalanceInterface
+class BalanceObject extends EntryObject implements BalanceInterface, SequenceAwareInterface
 {
-    /**
-     * @var int
-     */
-    protected $sequence = 0;
+    use SequenceAwareTrait;
 
     /**
      * @param TypeAwareInterface $account
@@ -45,23 +44,6 @@ class BalanceObject extends EntryObject implements BalanceInterface
             ));
         }
         return parent::setAccount($account);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSequence()
-    {
-        return $this->sequence;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setSequence($sequence)
-    {
-        $this->sequence = (int) $sequence;
-        return $this;
     }
 
     /**

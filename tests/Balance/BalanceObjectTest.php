@@ -9,6 +9,9 @@
 namespace MonetiseWalletTest\Balance;
 
 use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
+use Matryoshka\Model\Hydrator\Strategy\HasOneStrategy;
+use Matryoshka\Model\Hydrator\Strategy\SetTypeStrategy;
+use MatryoshkaTest\Model\Hydrator\Strategy\HasOneStrategyTest;
 use Monetise\Wallet\Balance\BalanceInterface;
 use Monetise\Wallet\Balance\BalanceObject;
 use Zend\Stdlib\Hydrator\HydratorAwareInterface;
@@ -33,7 +36,11 @@ class BalanceObjectTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(HydratorAwareInterface::class, $balance);
 
         // Test default
-        $this->assertInstanceOf(MatryoshkaClassMethods::class, $balance->getHydrator());
+        $this->assertInstanceOf(MatryoshkaClassMethods::class, $defaultHydrator = $balance->getHydrator());
+        $this->assertInstanceOf(HasOneStrategy::class, $defaultHydrator->getStrategy('account_balance'));
+        $this->assertInstanceOf(HasOneStrategy::class, $defaultHydrator->getStrategy('available_balance'));
+        $this->assertInstanceOf(SetTypeStrategy::class, $defaultHydrator->getStrategy('pending_transactions'));
+        $this->assertInstanceOf(SetTypeStrategy::class, $defaultHydrator->getStrategy('sequence'));
 
         // Other hydrator
         $anotherHydrator = new ObjectProperty;

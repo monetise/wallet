@@ -8,6 +8,8 @@
  */
 namespace Monetise\Wallet\Balance;
 
+use Monetise\Wallet\Sequence\SequenceAwareInterface;
+use Monetise\Wallet\Sequence\SequenceAwareTrait;
 use Zend\Stdlib\Hydrator\HydratorAwareInterface;
 use Zend\Stdlib\Hydrator\HydratorAwareTrait;
 use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
@@ -21,13 +23,14 @@ use Monetise\Wallet\Account\TypeAwareTrait;
 /**
  * Class BalanceObject
  */
-class BalanceObject implements BalanceInterface, HydratorAwareInterface
+class BalanceObject implements BalanceInterface, SequenceAwareInterface, HydratorAwareInterface
 {
     use HydratorAwareTrait;
     use AccountTrait;
     use TypeAwareTrait;
     use DateAwareTrait;
     use BalanceTrait;
+    use SequenceAwareTrait;
 
     /**
      * Retrieve hydrator

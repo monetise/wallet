@@ -34,11 +34,6 @@ trait BalanceTrait
     protected $pendingTransactions = [];
 
     /**
-     * @var int
-    */
-    protected $sequence = 0;
-
-    /**
      * @return MoneyInterface
      */
     public function getAccountBalance()
@@ -95,24 +90,6 @@ trait BalanceTrait
     public function setPendingTransactions(array $pendingTransactions)
     {
         $this->pendingTransactions = $pendingTransactions;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getSequence()
-    {
-        return $this->sequence;
-    }
-
-    /**
-     * @param int $sequence
-     * @return $this
-     */
-    public function setSequence($sequence)
-    {
-        $this->sequence = (int) $sequence;
         return $this;
     }
 }
