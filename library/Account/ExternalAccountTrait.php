@@ -18,6 +18,7 @@ trait ExternalAccountTrait
      */
     protected $externalId;
 
+    abstract public function getType();
 
     /**
      * {@inheritdoc}

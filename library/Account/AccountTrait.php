@@ -18,6 +18,8 @@ trait AccountTrait
      */
     protected $id;
 
+    abstract public function getType();
+
     /**
      * {@inheritdoc}
      */

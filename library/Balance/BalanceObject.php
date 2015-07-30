@@ -14,6 +14,9 @@ use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
 use Matryoshka\Model\Hydrator\Strategy\HasOneStrategy;
 use Matryoshka\Model\Hydrator\Strategy\SetTypeStrategy;
 use Monetise\Money\Money\MoneyObject;
+use Monetise\Wallet\Account\AccountTrait;
+use Monetise\Wallet\Date\DateAwareTrait;
+use Monetise\Wallet\Account\TypeAwareTrait;
 
 /**
  * Class BalanceObject
@@ -22,6 +25,7 @@ class BalanceObject implements BalanceInterface, HydratorAwareInterface
 {
     use HydratorAwareTrait;
     use AccountTrait;
+    use TypeAwareTrait;
     use DateAwareTrait;
     use BalanceTrait;
 
