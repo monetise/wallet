@@ -57,6 +57,13 @@ interface EntryCollectionInterface extends \Traversable
     public function filterByAmount(MoneyInterface $amount);
 
     /**
+     * Retrieve all the distinct currencies
+     *
+     * @return array
+     */
+    public function extractCurrencies();
+
+    /**
      * Extract from current collection the first entry matching the given account,
      * or null if no match is found.
      *

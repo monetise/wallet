@@ -86,6 +86,7 @@ trait AccountingCollectionTrait
     }
 
     /**
+     * // TODO: modify
      * Whether all entry amounts sum to zero
      *
      * @return bool

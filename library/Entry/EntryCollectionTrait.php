@@ -111,6 +111,22 @@ trait EntryCollectionTrait
     }
 
     /**
+     * Retrieve all the distinct currencies
+     *
+     * @return array
+     */
+    public function extractCurrencies()
+    {
+        $currencies = [];
+        /* @var $entry EntryInterface */
+        foreach ($this as $entry) {
+            $currencies[$entry->getAmount()->getCurrency()] = true;
+        }
+
+        return array_keys($currencies);
+    }
+
+    /**
      * Extract from current collection the first entry matching the given account,
      * or null if no match is found.
      *
