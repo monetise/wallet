@@ -44,7 +44,7 @@ interface AccountingCollectionInterface extends EntryCollectionInterface
      *
      * @return MoneyInterface|null
      */
-    public function sumAccountInterfaceOnly();
+    public function sumAccountInterfaceOnly(); // FIXME: sumAccountsByInterface($interface = AccountInterface::class)
 
     /**
      * Whether all the entry amounts regarding the same currency sum to zero or not

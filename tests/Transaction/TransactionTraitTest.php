@@ -8,9 +8,7 @@
  */
 namespace MonetiseWalletTest\Transaction;
 
-use Monetise\Money\Money\MoneyObject;
 use Monetise\Wallet\Entry\AccountingCollection;
-use Monetise\Wallet\Entry\EntryObject;
 use Monetise\Wallet\Transaction\Balance;
 use Monetise\Wallet\Transaction\TransactionTrait;
 
