@@ -9,11 +9,11 @@
 namespace MonetiseTest\Wallet\Account;
 
 use PHPUnit_Framework_TestCase;
+use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
 use Monetise\Wallet\Account\AccountInterface;
 use Monetise\Wallet\Account\AccountObject;
-use Zend\Stdlib\Hydrator\HydratorAwareInterface;
-use Matryoshka\Model\Hydrator\ClassMethods;
 use Monetise\Wallet\Balance\BalanceObject;
+use Zend\Stdlib\Hydrator\HydratorAwareInterface;
 use Zend\Stdlib\Hydrator\ObjectProperty;
 
 /**
@@ -35,7 +35,7 @@ class AccountObjectTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf(HydratorAwareInterface::class, $account);
 
         // Test default
-        $this->assertInstanceOf(ClassMethods::class, $account->getHydrator());
+        $this->assertInstanceOf(MatryoshkaClassMethods::class, $account->getHydrator());
 
         // Other hydrator
         $anotherHydrator = new ObjectProperty;

@@ -9,7 +9,6 @@
 namespace Monetise\Wallet\Entry;
 
 use Monetise\Money\Money\MoneyInterface;
-use Monetise\Money\Money\MoneyObject;
 use Monetise\Wallet\Account\AccountInterface;
 use Monetise\Wallet\Account\ComparableInterface;
 
@@ -26,17 +25,17 @@ trait AccountingCollectionTrait
      * The given account must be comparable.
      *
      * @param ComparableInterface $account
-     * @return MoneyInterface
+     * @return MoneyInterface|null
      */
     public function sumByAccount(ComparableInterface $account)
     {
         /* @var $money MoneyInterface */
-        $money = new MoneyObject;
+        $money = null;
 
         /* @var $entry EntryInterface */
         foreach ($this as $entry) {
             if ($account->equalTo($entry->getAccount())) {
-                $money->add($entry->getAmount());
+                $money = $money === null ? clone $entry->getAmount() : $money->add($entry->getAmount());
             }
         }
 
@@ -51,12 +50,12 @@ trait AccountingCollectionTrait
     public function sumAccountInterfaceOnly()
     {
         /* @var $money MoneyInterface */
-        $money = new MoneyObject;
+        $money = null;
 
         /* @var $entry EntryInterface */
         foreach ($this as $entry) {
             if ($entry->getAccount() instanceof AccountInterface) {
-                $money->add($entry->getAmount());
+                $money = $money === null ? clone $entry->getAmount() : $money->add($entry->getAmount());
             }
         }
 

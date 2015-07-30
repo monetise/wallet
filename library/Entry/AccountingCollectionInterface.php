@@ -24,14 +24,14 @@ interface AccountingCollectionInterface extends EntryCollectionInterface
      * The given account must be comparable.
      *
      * @param ComparableInterface $account
-     * @return MoneyInterface
+     * @return MoneyInterface|null
      */
     public function sumByAccount(ComparableInterface $account);
 
     /**
      * Sum only the amounts of the entries having an AccountInterface account.
      *
-     * @return MoneyInterface
+     * @return MoneyInterface|null
      */
     public function sumAccountInterfaceOnly();
 
