@@ -18,7 +18,6 @@ use Monetise\Wallet\Account\ComparableInterface;
  */
 trait AccountingCollectionTrait
 {
-
     /**
      * Sum the amounts of the entries matching the given account,
      * or null if no match is found.
@@ -37,7 +36,7 @@ trait AccountingCollectionTrait
         /* @var $entry EntryInterface */
         foreach ($this as $entry) {
             if ($account->equalTo($entry->getAccount())) {
-                $money = $money === null ? clone $entry->getAmount() : $money->add($entry->getAmount());
+                $money->add($entry->getAmount());
             }
         }
 
@@ -57,7 +56,7 @@ trait AccountingCollectionTrait
         /* @var $entry EntryInterface */
         foreach ($this as $entry) {
             if ($entry->getAccount() instanceof AccountInterface) {
-                $money = $money === null ? clone $entry->getAmount() : $money->add($entry->getAmount());
+                $money->add($entry->getAmount());
             }
         }
 

@@ -8,10 +8,10 @@
  */
 namespace Monetise\Wallet\Entry;
 
-use Monetise\Wallet\Account\ComparableInterface;
-use Monetise\Wallet\Exception;
 use Monetise\Wallet\Account\AccountInterface;
+use Monetise\Wallet\Account\ComparableInterface;
 use Monetise\Wallet\Account\TypeAwareInterface;
+use Monetise\Wallet\Exception;
 
 /**
  * Trait EntryCollectionTrait
@@ -94,14 +94,17 @@ trait EntryCollectionTrait
     /**
      * Return an array of accounts that are instances of the given interface
      *
+     * The given interface must inherit from ComparableInterface and TypeAwareInterface.
+     *
      * @param string $interface
      * @return array
+     * @throws Exception\InvalidArgumentException
      */
     public function getAccountsByInterface($interface = AccountInterface::class)
     {
         $comparableInterface = ComparableInterface::class;
         if (!is_subclass_of($interface, $comparableInterface)) {
-            throw new InvalidArgumentException(sprintf(
+            throw new Exception\InvalidArgumentException(sprintf(
                 'Given interface must extends %s',
                 $comparableInterface
             ));
@@ -109,7 +112,7 @@ trait EntryCollectionTrait
 
         $typeAwareInterface = TypeAwareInterface::class;
         if (!is_subclass_of($interface, $typeAwareInterface)) {
-            throw new InvalidArgumentException(sprintf(
+            throw new Exception\InvalidArgumentException(sprintf(
                 'Given interface must extends %s',
                 $typeAwareInterface
             ));

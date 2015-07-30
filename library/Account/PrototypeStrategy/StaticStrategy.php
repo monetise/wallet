@@ -12,6 +12,7 @@ use Matryoshka\Model\Object\PrototypeStrategy\PrototypeStrategyInterface as Matr
 use Monetise\Wallet\Account\AccountObject;
 use Monetise\Wallet\Account\ExternalAccountObject;
 use Monetise\Wallet\Account\TypeAwareObject;
+use Monetise\Wallet\Exception;
 
 /**
  * Class StaticStrategy
@@ -25,7 +26,7 @@ class StaticStrategy implements MatryoshkaPrototypeStrategyInterface
      */
     public function createObject($objectPrototype, array $context = null)
     {
-        if (!empty($context) && isset($context['type'])) {
+        if (isset($context['type'])) {
             switch ($context['type']) {
                 case 'Account':
                     return new AccountObject;
@@ -34,6 +35,13 @@ class StaticStrategy implements MatryoshkaPrototypeStrategyInterface
                 default:
                     return new TypeAwareObject;
             }
+        }
+
+        if (!is_object($objectPrototype)) {
+            throw new Exception\InvalidArgumentException(sprintf(
+                'Object prototype must be an object, given "%s"',
+                gettype($objectPrototype)
+            ));
         }
 
         return clone $objectPrototype; // FIXME: check it exception has to be thrown
