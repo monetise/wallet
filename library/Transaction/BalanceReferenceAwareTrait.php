@@ -16,7 +16,6 @@ use Monetise\Wallet\Transaction\Balance\BalanceCollectionInterface;
  */
 trait BalanceReferenceAwareTrait
 {
-
     /**
      * @var \DateTime|null
      */
