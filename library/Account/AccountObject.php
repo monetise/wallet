@@ -31,18 +31,4 @@ class AccountObject extends TypeAwareObject implements AccountInterface
             $this->setType($account->getType());
         }
     }
-
-    /**
-     * Retrieve hydrator
-     *
-     * @return MatryoshkaClassMethods
-     */
-    public function getHydrator()
-    {
-        if (!$this->hydrator) {
-            $this->hydrator = new MatryoshkaClassMethods(true);
-        }
-
-        return $this->hydrator;
-    }
 }

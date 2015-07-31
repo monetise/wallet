@@ -13,5 +13,4 @@ namespace Monetise\Wallet\Account;
  */
 interface ExchangeAccountInterface extends TypeAwareInterface, ComparableInterface
 {
-
 }

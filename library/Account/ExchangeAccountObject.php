@@ -8,12 +8,13 @@
  */
 namespace Monetise\Wallet\Account;
 
+use Monetise\Wallet\Exception;
+
 /**
  * Class ExchangeAccountObject
  */
 class ExchangeAccountObject extends TypeAwareObject implements ExchangeAccountInterface
 {
-
     protected $type = 'ExchangeAccount';
 
     /**
@@ -22,7 +23,7 @@ class ExchangeAccountObject extends TypeAwareObject implements ExchangeAccountIn
     public function setType($type)
     {
         if ($type !== $this->type) {
-            throw new InvalidArgumentException(sprintf(
+            throw new Exception\InvalidArgumentException(sprintf(
                 'The only type %s allows is "%": "%s" given',
                 __CLASS__,
                 $this->type,
@@ -32,4 +33,11 @@ class ExchangeAccountObject extends TypeAwareObject implements ExchangeAccountIn
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function equalTo(TypeAwareInterface $account)
+    {
+        return $account instanceof ExchangeAccountInterface && $this->getType() == $account->getType();
+    }
 }

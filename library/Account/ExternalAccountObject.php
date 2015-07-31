@@ -18,18 +18,4 @@ use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
 class ExternalAccountObject extends TypeAwareObject implements ExternalAccountInterface
 {
     use ExternalAccountTrait;
-
-    /**
-     * Retrieve hydrator
-     *
-     * @return MatryoshkaClassMethods
-     */
-    public function getHydrator()
-    {
-        if (!$this->hydrator) {
-            $this->hydrator = new MatryoshkaClassMethods(true);
-        }
-
-        return $this->hydrator;
-    }
 }
