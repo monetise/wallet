@@ -9,6 +9,7 @@
 namespace Monetise\Wallet\Entry;
 
 use Monetise\Money\Money\MoneyInterface;
+use Monetise\Wallet\Account\AccountInterface;
 use Monetise\Wallet\Account\ComparableInterface;
 
 /**
@@ -40,11 +41,15 @@ interface AccountingCollectionInterface extends EntryCollectionInterface
     public function sumByCurrency($currency);
 
     /**
-     * Sum only the amounts of the entries having an AccountInterface account.
+     * Sum only the amounts of the entries having an account matching the given interface.
      *
+     * The given interface must inherit from ComparableInterface and TypeAwareInterface.
+     *
+     * @param string $interface
      * @return MoneyInterface|null
+     * @throws Exception\InvalidArgumentException
      */
-    public function sumAccountInterfaceOnly(); // FIXME: sumAccountsByInterface($interface = AccountInterface::class)
+    public function sumAccountsByInterface($interface = AccountInterface::class);
 
     /**
      * Whether all the entry amounts regarding the same currency sum to zero or not

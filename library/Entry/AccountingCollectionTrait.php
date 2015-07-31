@@ -12,6 +12,8 @@ use Monetise\Money\Exception\UnexpectedValueException;
 use Monetise\Money\Money\MoneyInterface;
 use Monetise\Wallet\Account\AccountInterface;
 use Monetise\Wallet\Account\ComparableInterface;
+use Monetise\Wallet\Account\TypeAwareInterface;
+use Monetise\Wallet\Exception;
 
 /**
  * Trait AccountingCollectionTrait
@@ -67,18 +69,38 @@ trait AccountingCollectionTrait
     }
 
     /**
-     * Sum only the amounts of the entries having an AccountInterface account.
+     * Sum only the amounts of the entries having an account matching the given interface.
      *
+     * The given interface must inherit from ComparableInterface and TypeAwareInterface.
+     *
+     * @param string $interface
      * @return MoneyInterface|null
+     * @throws Exception\InvalidArgumentException
      */
-    public function sumAccountInterfaceOnly()
+    public function sumAccountsByInterface($interface = AccountInterface::class)
     {
+        $comparableInterface = ComparableInterface::class;
+        if (!is_subclass_of($interface, $comparableInterface)) {
+            throw new Exception\InvalidArgumentException(sprintf(
+                'Given interface must extends %s',
+                $comparableInterface
+            ));
+        }
+
+        $typeAwareInterface = TypeAwareInterface::class;
+        if (!is_subclass_of($interface, $typeAwareInterface)) {
+            throw new Exception\InvalidArgumentException(sprintf(
+                'Given interface must extends %s',
+                $typeAwareInterface
+            ));
+        }
+
         /* @var $money MoneyInterface */
         $money = null;
 
         /* @var $entry EntryInterface */
         foreach ($this as $entry) {
-            if ($entry->getAccount() instanceof AccountInterface) {
+            if ($entry->getAccount() instanceof $interface) {
                 $money = $money === null ? clone $entry->getAmount() : $money->add($entry->getAmount());
             }
         }

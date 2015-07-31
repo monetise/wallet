@@ -9,6 +9,7 @@
 namespace MonetiseWalletTest\Account\PrototypeStrategy;
 
 use Monetise\Wallet\Account\AccountObject;
+use Monetise\Wallet\Account\ExchangeAccountObject;
 use Monetise\Wallet\Account\ExternalAccountObject;
 use Monetise\Wallet\Account\PrototypeStrategy\StaticStrategy;
 use Monetise\Wallet\Account\TypeAwareObject;
@@ -34,6 +35,11 @@ class StaticStrategyTest extends \PHPUnit_Framework_TestCase
             'type' => 'ExternalAccount',
         ];
         $this->assertInstanceOf(ExternalAccountObject::class, $strategy->createObject(null, $context));
+
+        $context = [
+            'type' => 'ExchangeAccount',
+        ];
+        $this->assertInstanceOf(ExchangeAccountObject::class, $strategy->createObject(null, $context));
 
         $context = [
             'type' => 'Unknow',

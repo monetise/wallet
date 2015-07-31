@@ -67,8 +67,11 @@ interface EntryCollectionInterface extends \Traversable
     /**
      * Return an array of accounts that are instances of the given interface
      *
+     * The given interface must inherit from ComparableInterface and TypeAwareInterface.
+     *
      * @param string $interface
      * @return array
+     * @throws Exception\InvalidArgumentException
      */
     public function getAccountsByInterface($interface = AccountInterface::class);
 }

@@ -89,7 +89,9 @@ trait EntryCollectionTrait
     }
 
     /**
-     * Retrieve all the distinct currencies
+     * Retrieve all the distinct currencies alphabetically sorted
+     *
+     * Missing currencies will be referred as empty string.
      *
      * @return array
      */
