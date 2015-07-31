@@ -13,6 +13,7 @@ use Monetise\Wallet\Account\AccountObject;
 use Monetise\Wallet\Account\ExternalAccountObject;
 use Monetise\Wallet\Account\TypeAwareObject;
 use Monetise\Wallet\Exception;
+use Monetise\Wallet\Account\ExchangeAccountObject;
 
 /**
  * Class StaticStrategy
@@ -32,6 +33,8 @@ class StaticStrategy implements MatryoshkaPrototypeStrategyInterface
                     return new AccountObject;
                 case 'ExternalAccount':
                     return new ExternalAccountObject;
+                case 'ExchangeAccount':
+                    return new ExchangeAccountObject;
                 default:
                     return new TypeAwareObject;
             }
@@ -44,6 +47,6 @@ class StaticStrategy implements MatryoshkaPrototypeStrategyInterface
             ));
         }
 
-        return clone $objectPrototype; // FIXME: check it exception has to be thrown
+        return clone $objectPrototype;
     }
 }
