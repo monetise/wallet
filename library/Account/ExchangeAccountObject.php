@@ -24,7 +24,7 @@ class ExchangeAccountObject extends TypeAwareObject implements ExchangeAccountIn
     {
         if ($type !== $this->type) {
             throw new Exception\InvalidArgumentException(sprintf(
-                'The only type %s allows is "%": "%s" given',
+                'The only type that %s allows is "%": "%s" given',
                 __CLASS__,
                 $this->type,
                 $type

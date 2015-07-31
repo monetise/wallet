@@ -48,10 +48,10 @@ class AccountTraitTest extends PHPUnit_Framework_TestCase
 
     public function testEqualTo()
     {
-        $accountA = new AccountObject();
+        $accountA = new AccountObject;
         $accountA->setId('A')->setType('Foo');
 
-        $accountB = new AccountObject();
+        $accountB = new AccountObject;
         $accountB->setId('B')->setType('Foo');
 
         /* @var $traitObject AccountTrait */
