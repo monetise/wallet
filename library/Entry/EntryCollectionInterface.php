@@ -48,15 +48,6 @@ interface EntryCollectionInterface extends \Traversable
     public function filterByAccount(ComparableInterface $account);
 
     /**
-     * Extract from currenct collection all the entries which amount (quantity and currency)
-     * is equal to the given amount
-     *
-     * @param MoneyInterface $amount
-     * @return EntryCollectionInterface
-     */
-    public function filterByAmount(MoneyInterface $amount);
-
-    /**
      * Retrieve all the distinct currencies
      *
      * @return array

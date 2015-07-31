@@ -23,7 +23,7 @@ class EntryObjectTest extends \PHPUnit_Framework_TestCase
 {
     public function testImplementsEntryInterface()
     {
-        $balance = new EntryObject();
+        $balance = new EntryObject;
         $this->assertInstanceOf(EntryInterface::class, $balance);
     }
 

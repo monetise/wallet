@@ -90,27 +90,6 @@ trait EntryCollectionTrait
     }
 
     /**
-     * Extract from currenct collection all the entries which amount (quantity and currency)
-     * is equal to the given amount
-     *
-     * @param MoneyInterface $amount
-     * @return EntryCollectionInterface
-     */
-    public function filterByAmount(MoneyInterface $amount)
-    {
-        /** @var $filteredCollection EntryCollectionInterface */
-        $filteredCollection = new static;
-        /* @var $entry EntryInterface */
-        foreach ($this as $entry) {
-            if ($amount->equalTo($entry->getAmount())) {
-                $filteredCollection->append($entry);
-            }
-        }
-
-        return $filteredCollection;
-    }
-
-    /**
      * Retrieve all the distinct currencies
      *
      * @return array
@@ -120,10 +99,17 @@ trait EntryCollectionTrait
         $currencies = [];
         /* @var $entry EntryInterface */
         foreach ($this as $entry) {
-            $currencies[$entry->getAmount()->getCurrency()] = true;
+            $amount = $entry->getAmount();
+            if ($amount) {
+                $currencies[$amount->getCurrency()] = true;
+            }
+        }
+        if (!empty($currencies)) {
+            $currencies = array_keys($currencies);
+            sort($currencies, SORT_STRING);
         }
 
-        return array_keys($currencies);
+        return $currencies;
     }
 
     /**
