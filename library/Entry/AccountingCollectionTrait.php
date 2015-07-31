@@ -36,7 +36,7 @@ trait AccountingCollectionTrait
 
         /* @var $entry EntryInterface */
         foreach ($this as $entry) {
-            if ($account->equalTo($entry->getAccount())) {
+            if ($account->equalTo($entry->getAccount()) && $entry->getAmount()) {
                 $money = $money === null ? clone $entry->getAmount() : $money->add($entry->getAmount());
             }
         }
@@ -60,7 +60,7 @@ trait AccountingCollectionTrait
 
         /* @var $entry EntryInterface */
         foreach ($this as $entry) {
-            if ($entry->getAmount()->getCurrency() === $currency) {
+            if ($entry->getAmount() && $entry->getAmount()->getCurrency() === $currency) {
                 $money = $money === null ? clone $entry->getAmount() : $money->add($entry->getAmount());
             }
         }
@@ -100,7 +100,7 @@ trait AccountingCollectionTrait
 
         /* @var $entry EntryInterface */
         foreach ($this as $entry) {
-            if ($entry->getAccount() instanceof $interface) {
+            if ($entry->getAmount() && $entry->getAccount() instanceof $interface) {
                 $money = $money === null ? clone $entry->getAmount() : $money->add($entry->getAmount());
             }
         }

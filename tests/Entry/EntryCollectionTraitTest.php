@@ -123,7 +123,6 @@ class EntryCollectionTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($entry2, $retrievedEntry2);
         $this->assertInstanceOf(EntryInterface::class, $retrievedEntry1 = $coll->getByAccount($account1));
         $this->assertSame($entry1, $retrievedEntry1);
-
     }
 
     public function testExtractCurrencies()

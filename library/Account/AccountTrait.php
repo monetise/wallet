@@ -33,9 +33,9 @@ trait AccountTrait
      */
     public function equalTo(TypeAwareInterface $account)
     {
-        return $account instanceof AccountInterface
-            && $this->getId() == $account->getId()
-            && $this->getType() == $account->getType();
+        return ($account instanceof AccountInterface &&
+                $this->getId() == $account->getId() &&
+                $this->getType() == $account->getType());
     }
 
     /**

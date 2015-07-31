@@ -33,9 +33,9 @@ trait ExternalAccountTrait
      */
     public function equalTo(TypeAwareInterface $account)
     {
-        return $account instanceof ExternalAccountInterface
-            && $this->getExternalId() == $account->getExternalId()
-            && $this->getType() == $account->getType();
+        return ($account instanceof ExternalAccountInterface &&
+                $this->getExternalId() == $account->getExternalId() &&
+                $this->getType() == $account->getType());
     }
 
     /**
