@@ -8,7 +8,6 @@
  */
 namespace Monetise\Wallet\Entry;
 
-use Monetise\Money\Money\MoneyInterface;
 use Monetise\Wallet\Account\AccountInterface;
 use Monetise\Wallet\Account\ComparableInterface;
 use Monetise\Wallet\Account\TypeAwareInterface;

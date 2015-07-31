@@ -8,7 +8,6 @@
  */
 namespace MonetiseWalletTest\Account;
 
-use Doctrine\Instantiator\Exception\InvalidArgumentException;
 use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
 use Monetise\Wallet\Account\AccountObject;
 use Monetise\Wallet\Account\ExchangeAccountInterface;

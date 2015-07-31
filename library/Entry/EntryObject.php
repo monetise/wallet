@@ -8,13 +8,13 @@
  */
 namespace Monetise\Wallet\Entry;
 
+use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
+use Matryoshka\Model\Hydrator\Strategy\HasOneStrategy;
 use Monetise\Money\Money\MoneyObject;
 use Monetise\Wallet\Account\PrototypeStrategy\StaticStrategy;
 use Monetise\Wallet\Account\TypeAwareObject;
 use Zend\Stdlib\Hydrator\HydratorAwareInterface;
 use Zend\Stdlib\Hydrator\HydratorAwareTrait;
-use Matryoshka\Model\Hydrator\Strategy\HasOneStrategy;
-use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
 
 /**
  * Class EntryObject

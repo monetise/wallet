@@ -8,9 +8,9 @@
  */
 namespace MonetiseWalletTest\Transaction\Balance;
 
-use Monetise\Wallet\Transaction\Balance;
 use Monetise\Wallet\Entry\EntryObject;
 use Monetise\Wallet\Exception\InvalidArgumentException;
+use Monetise\Wallet\Transaction\Balance;
 use Monetise\Wallet\Transaction\Balance\BalanceCollection;
 
 /**

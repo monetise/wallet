@@ -14,10 +14,10 @@ use Matryoshka\Model\Hydrator\Strategy\SetTypeStrategy;
 use Monetise\Wallet\Account\AccountInterface;
 use Monetise\Wallet\Account\AccountObject;
 use Monetise\Wallet\Account\TypeAwareObject;
+use Monetise\Wallet\Exception;
 use Monetise\Wallet\Transaction\Balance;
 use Zend\Stdlib\Hydrator\HydratorAwareInterface;
 use Zend\Stdlib\Hydrator\ObjectProperty;
-use Monetise\Wallet\Exception;
 
 /**
  * Class BalanceObjectTest

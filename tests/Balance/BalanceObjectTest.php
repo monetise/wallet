@@ -11,7 +11,6 @@ namespace MonetiseWalletTest\Balance;
 use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
 use Matryoshka\Model\Hydrator\Strategy\HasOneStrategy;
 use Matryoshka\Model\Hydrator\Strategy\SetTypeStrategy;
-use MatryoshkaTest\Model\Hydrator\Strategy\HasOneStrategyTest;
 use Monetise\Wallet\Balance\BalanceInterface;
 use Monetise\Wallet\Balance\BalanceObject;
 use Zend\Stdlib\Hydrator\HydratorAwareInterface;

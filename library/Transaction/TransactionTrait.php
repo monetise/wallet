@@ -8,9 +8,8 @@
  */
 namespace Monetise\Wallet\Transaction;
 
-use Monetise\Wallet\Date\DateAwareTrait;
-use Monetise\Wallet\Entry\AccountingCollectionInterface;
 use Monetise\Wallet\Entry\AccountingCollection;
+use Monetise\Wallet\Entry\AccountingCollectionInterface;
 use Monetise\Wallet\Transaction\Balance\BalanceCollection;
 use Monetise\Wallet\Transaction\Balance\BalanceCollectionInterface;
 

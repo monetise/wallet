@@ -8,9 +8,9 @@
  */
 namespace Monetise\Wallet\Account;
 
+use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
 use Zend\Stdlib\Hydrator\HydratorAwareInterface;
 use Zend\Stdlib\Hydrator\HydratorAwareTrait;
-use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
 
 /**
  * Class TypeAwareObject

@@ -10,8 +10,6 @@ namespace Monetise\Wallet\Balance;
 
 use Monetise\Money\Money\MoneyInterface;
 use Monetise\Money\Money\MoneyObject;
-use Monetise\Wallet\Account\AccountTrait;
-use Monetise\Wallet\Date\DateAwareTrait;
 
 /**
  * Class BalanceTrait

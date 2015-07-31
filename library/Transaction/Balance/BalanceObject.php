@@ -12,13 +12,12 @@ use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
 use Matryoshka\Model\Hydrator\Strategy\HasOneStrategy;
 use Matryoshka\Model\Hydrator\Strategy\SetTypeStrategy;
 use Monetise\Money\Money\MoneyObject;
+use Monetise\Wallet\Account\AccountInterface;
 use Monetise\Wallet\Account\AccountObject;
 use Monetise\Wallet\Account\PrototypeStrategy\StaticStrategy;
-use Monetise\Wallet\Account\AccountInterface;
 use Monetise\Wallet\Account\TypeAwareInterface;
 use Monetise\Wallet\Entry\EntryObject;
 use Monetise\Wallet\Exception;
-use Monetise\Wallet\Sequence\SequenceAwareInterface;
 use Monetise\Wallet\Sequence\SequenceAwareTrait;
 
 /**

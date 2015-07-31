@@ -8,17 +8,17 @@
  */
 namespace Monetise\Wallet\Balance;
 
-use Monetise\Wallet\Sequence\SequenceAwareInterface;
-use Monetise\Wallet\Sequence\SequenceAwareTrait;
-use Zend\Stdlib\Hydrator\HydratorAwareInterface;
-use Zend\Stdlib\Hydrator\HydratorAwareTrait;
 use Matryoshka\Model\Hydrator\ClassMethods as MatryoshkaClassMethods;
 use Matryoshka\Model\Hydrator\Strategy\HasOneStrategy;
 use Matryoshka\Model\Hydrator\Strategy\SetTypeStrategy;
 use Monetise\Money\Money\MoneyObject;
 use Monetise\Wallet\Account\AccountTrait;
-use Monetise\Wallet\Date\DateAwareTrait;
 use Monetise\Wallet\Account\TypeAwareTrait;
+use Monetise\Wallet\Date\DateAwareTrait;
+use Monetise\Wallet\Sequence\SequenceAwareInterface;
+use Monetise\Wallet\Sequence\SequenceAwareTrait;
+use Zend\Stdlib\Hydrator\HydratorAwareInterface;
+use Zend\Stdlib\Hydrator\HydratorAwareTrait;
 
 /**
  * Class BalanceObject

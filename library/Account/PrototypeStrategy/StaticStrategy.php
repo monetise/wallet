@@ -10,10 +10,10 @@ namespace Monetise\Wallet\Account\PrototypeStrategy;
 
 use Matryoshka\Model\Object\PrototypeStrategy\PrototypeStrategyInterface as MatryoshkaPrototypeStrategyInterface;
 use Monetise\Wallet\Account\AccountObject;
+use Monetise\Wallet\Account\ExchangeAccountObject;
 use Monetise\Wallet\Account\ExternalAccountObject;
 use Monetise\Wallet\Account\TypeAwareObject;
 use Monetise\Wallet\Exception;
-use Monetise\Wallet\Account\ExchangeAccountObject;
 
 /**
  * Class StaticStrategy

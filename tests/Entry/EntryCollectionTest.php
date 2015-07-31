@@ -8,9 +8,9 @@
  */
 namespace MonetiseWalletTest\Entry;
 
+use Matryoshka\Model\Object\AbstractCollection as MatryoshkaAbstractCollection;
 use Monetise\Wallet\Entry\EntryCollection;
 use Monetise\Wallet\Entry\EntryCollectionInterface;
-use Matryoshka\Model\Object\AbstractCollection as MatryoshkaAbstractCollection;
 
 /**
  * Class EntryCollectionTest
