@@ -20,12 +20,12 @@ use Monetise\Wallet\Account\ExternalAccountObject;
 use Monetise\Wallet\Account\TypeAwareInterface;
 use Monetise\Wallet\Entry\AccountingCollection;
 use Monetise\Wallet\Entry\AccountingCollectionTrait;
-use Monetise\Wallet\Entry\EntryCollection;
-use Monetise\Wallet\Entry\EntryCollectionTrait;
 use Monetise\Wallet\Entry\EntryInterface;
 use Monetise\Wallet\Entry\EntryObject;
 use Monetise\Wallet\Exception\InvalidArgumentException;
+use Monetise\Wallet\Exception\UnexpectedValueException;
 use MonetiseWalletTest\TestAsset\ComparableButTypeUnawareInterface;
+use MonetiseWalletTest\TestAsset\WrongExtendedAccountingCollection;
 
 /**
  * Class AccountingCollectionTraitTest
@@ -106,6 +106,17 @@ class AccountingCollectionTraitTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(MoneyInterface::class, $sum = $coll->sumByCurrency('EUR'));
         $this->assertEquals($amount1E->add($amount2E), $sum);
+
+        // Amount withou currency
+        $coll = new AccountingCollection;
+        $accountN = (new AccountObject)->setType('Wallet');
+        $amountN = (new MoneyObject)->setAmount(1);
+        $entryN = (new EntryObject)->setAccount($accountN)
+                                   ->setAmount($amountN);
+        $coll->append($entryN);
+
+        $this->assertInstanceOf(MoneyInterface::class, $sum = $coll->sumByCurrency(null));
+        $this->assertEquals(1, $sum->getAmount());
     }
 
     public function testSumAccountsByInterface()
@@ -167,5 +178,55 @@ class AccountingCollectionTraitTest extends \PHPUnit_Framework_TestCase
 
     public function testIsValid()
     {
+        $coll = new AccountingCollection;
+
+        $account1E = (new AccountObject)->setType('Wallet');
+        $amount1E = (new MoneyObject)->setAmount(100)->setCurrency('EUR');
+        $entry1E = (new EntryObject)->setAccount($account1E)
+            ->setAmount($amount1E);
+
+        $amount2E = (new MoneyObject)->setAmount(-100)->setCurrency('EUR');
+        $entry2E = (new EntryObject)->setAccount($account1E)
+            ->setAmount($amount2E);
+
+        $coll->append($entry1E);
+        $coll->append($entry2E);
+
+        $this->assertTrue($coll->isValid());
+
+        $excAccountU = new ExchangeAccountObject;
+        $amount1U = (new MoneyObject)->setAmount(120)->setCurrency('USD');
+        $entry1U = (new EntryObject)->setAccount($excAccountU)
+            ->setAmount($amount1U);
+
+        $amount2U = (new MoneyObject)->setAmount(-100)->setCurrency('USD');
+        $entry2U = (new EntryObject)->setAccount($excAccountU)
+            ->setAmount($amount2U);
+
+        $coll->append($entry1U);
+        $coll->append($entry2U);
+
+        $this->assertFalse($coll->isValid());
+
+        $coll = new AccountingCollection;
+        $account2E = (new AccountObject)->setType('Wallet');
+        $amount2E = new MoneyObject; // No currency, 0 amount
+        $entry2E = (new EntryObject)->setAccount($account2E)->setAmount($amount2E);
+        $coll->append($entry2E);
+
+        $this->assertTrue($coll->isValid());
+
+
+        $coll = new WrongExtendedAccountingCollection;
+        $account2E = (new AccountObject)->setType('Wallet');
+        $amount2E = (new MoneyObject)->setAmount(100)->setCurrency('EUR');
+        $entry2E = (new EntryObject)->setAccount($account2E)->setAmount($amount2E);
+        $coll->append($entry2E);
+
+        $this->setExpectedException(
+            UnexpectedValueException::class,
+            sprintf('Unexpected currency "%s": can not calculate sum', $coll->extractCurrencies()[0])
+        );
+        $coll->isValid();
     }
 }

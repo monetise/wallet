@@ -8,7 +8,6 @@
  */
 namespace Monetise\Wallet\Entry;
 
-use Monetise\Money\Exception\UnexpectedValueException;
 use Monetise\Money\Money\MoneyInterface;
 use Monetise\Wallet\Account\AccountInterface;
 use Monetise\Wallet\Account\ComparableInterface;
@@ -119,15 +118,16 @@ trait AccountingCollectionTrait
      * Whether all the entry amounts regarding the same currency sum to zero or not
      *
      * @return bool
+     * @throws Exception\UnexpectedValueException
      */
     public function isValid()
     {
         foreach ($this->extractCurrencies() as $currency) {
             $sum = $this->sumByCurrency($currency);
             if (!$sum) {
-                throw new UnexpectedValueException(sprintf(
-                    'A sum for the existing currency "%s" must necessary exist',
-                    $currency
+                throw new Exception\UnexpectedValueException(sprintf(
+                    'Unexpected currency %s: can not calculate sum',
+                    is_string($currency) ? '"' . $currency . '"' : gettype($currency)
                 ));
             }
             if ($sum->getAmount() !== 0) {

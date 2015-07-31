@@ -91,7 +91,7 @@ trait EntryCollectionTrait
     /**
      * Retrieve all the distinct currencies alphabetically sorted
      *
-     * Missing currencies will be referred as empty string.
+     * Missing currencies will be referred as null.
      *
      * @return array
      */
@@ -102,13 +102,11 @@ trait EntryCollectionTrait
         foreach ($this as $entry) {
             $amount = $entry->getAmount();
             if ($amount) {
-                $currencies[$amount->getCurrency()] = true;
+                $currencies[] = $amount->getCurrency();
             }
         }
-        if (!empty($currencies)) {
-            $currencies = array_keys($currencies);
-            sort($currencies, SORT_STRING);
-        }
+        $currencies = array_unique($currencies);
+        sort($currencies, SORT_REGULAR);
 
         return $currencies;
     }

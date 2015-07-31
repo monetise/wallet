@@ -55,6 +55,7 @@ interface AccountingCollectionInterface extends EntryCollectionInterface
      * Whether all the entry amounts regarding the same currency sum to zero or not
      *
      * @return bool
+     * Exception\UnexpectedValueException
      */
     public function isValid();
 }

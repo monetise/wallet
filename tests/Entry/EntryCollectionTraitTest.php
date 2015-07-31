@@ -9,13 +9,19 @@
 namespace MonetiseWalletTest\Entry;
 
 use Monetise\Money\Money\MoneyObject;
+use Monetise\Wallet\Account\AccountInterface;
 use Monetise\Wallet\Account\AccountObject;
+use Monetise\Wallet\Account\ComparableInterface;
+use Monetise\Wallet\Account\ExchangeAccountObject;
+use Monetise\Wallet\Account\ExternalAccountInterface;
 use Monetise\Wallet\Account\ExternalAccountObject;
+use Monetise\Wallet\Account\TypeAwareInterface;
 use Monetise\Wallet\Entry\EntryCollection;
 use Monetise\Wallet\Entry\EntryCollectionTrait;
 use Monetise\Wallet\Entry\EntryInterface;
 use Monetise\Wallet\Entry\EntryObject;
 use Monetise\Wallet\Exception\InvalidArgumentException;
+use MonetiseWalletTest\TestAsset\ComparableButTypeUnawareInterface;
 
 /**
  * Class EntryCollectionTraitTest
@@ -156,6 +162,71 @@ class EntryCollectionTraitTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInternalType('array', $currencies = $coll->extractCurrencies());
         $this->assertCount(3, $currencies);
-        $this->assertEquals(['', 'EUR', 'USD'], $currencies);
+        $this->assertEquals([null, 'EUR', 'USD'], $currencies);
+    }
+
+    public function testGetAccountsByInterfaceShouldThrowInvalidArgumentWhenNotValidInterfaceIsGivenToIt()
+    {
+        $coll = new EntryCollection;
+        $this->setExpectedException(
+            InvalidArgumentException::class,
+            'Given interface must extends ' . ComparableInterface::class
+        );
+        $coll->getAccountsByInterface(EntryInterface::class);
+    }
+
+    public function testGetAccountsByInterfaceShouldThrowInvalidArgumentWhenComparableButNotValidObjectIsGivenToIt()
+    {
+        $coll = new EntryCollection;
+        $this->setExpectedException(
+            InvalidArgumentException::class,
+            'Given interface must extends ' . TypeAwareInterface::class
+        );
+        $coll->getAccountsByInterface(ComparableButTypeUnawareInterface::class);
+    }
+
+    public function testGetAccountsByInterface()
+    {
+        $coll = new EntryCollection;
+
+        $account1E = (new AccountObject)->setType('Wallet');
+        $amount1E = (new MoneyObject)->setAmount(100)->setCurrency('EUR');
+        $entry1E = (new EntryObject)->setAccount($account1E)
+                                    ->setAmount($amount1E);
+
+        $amount2E = (new MoneyObject)->setAmount(-100)->setCurrency('EUR');
+        $entry2E = (new EntryObject)->setAccount($account1E)
+                                    ->setAmount($amount2E);
+
+        $excAccountU = new ExchangeAccountObject;
+        $amount1U = (new MoneyObject)->setAmount(120)->setCurrency('USD');
+        $entry1U = (new EntryObject)->setAccount($excAccountU)
+                                    ->setAmount($amount1U);
+
+        $amount2U = (new MoneyObject)->setAmount(-120)->setCurrency('USD');
+        $entry2U = (new EntryObject)->setAccount($excAccountU)
+                                    ->setAmount($amount2U);
+
+        $account3X = (new ExternalAccountObject)->setType('Wallet');
+        $entry3X = (new EntryObject)->setAccount($account3X);
+
+        $coll->append($entry1E);
+        $coll->append($entry1E);
+        $coll->append($entry2E);
+        $coll->append($entry1U);
+        $coll->append($entry2U);
+
+        $this->assertInternalType('array', $accounts = $coll->getAccountsByInterface(ExternalAccountInterface::class));
+        $this->assertEmpty($accounts);
+
+        $coll->append($entry3X);
+
+        $this->assertInternalType('array', $accounts = $coll->getAccountsByInterface(ExternalAccountInterface::class));
+        $this->assertCount(1, $accounts);
+        $this->assertSame($account3X, $accounts[0]);
+
+        $this->assertInternalType('array', $accounts = $coll->getAccountsByInterface(AccountInterface::class));
+        $this->assertCount(1, $accounts);
+        $this->assertSame($account1E, $accounts[0]);
     }
 }

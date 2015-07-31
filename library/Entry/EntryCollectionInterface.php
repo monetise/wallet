@@ -47,7 +47,9 @@ interface EntryCollectionInterface extends \Traversable
     public function filterByAccount(ComparableInterface $account);
 
     /**
-     * Retrieve all the distinct currencies
+     * Retrieve all the distinct currencies alphabetically sorted
+     *
+     * Missing currencies will be referred as null.
      *
      * @return array
      */
