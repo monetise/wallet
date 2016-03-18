@@ -5,8 +5,8 @@
     "license": "BSD-2-Clause",
     "require": {
         "php": ">=5.5",
-        "monetise/money": "dev-develop",
-        "matryoshka-model/matryoshka": "0.8.*@dev"
+        "monetise/money": "~0.1.0",
+        "matryoshka-model/matryoshka": "~0.8.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.7",
